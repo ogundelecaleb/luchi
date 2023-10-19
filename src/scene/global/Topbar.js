@@ -21,7 +21,7 @@ const Topbar = ({ setIsSidebar, userData }) => {
     <div className="flex border-b border-b-[#E4E7EC] w-full items-center justify-between px-6 gap-[16px] pt-6">
       <div className="flex items-center">
         <button
-          class="h-12 w-12 bg-[#FAFAFA] px-3 py-3 rounded-full lg:hidden mr-2"
+          class="h-12 w-12 bg-[#CA5834] px-3 py-3 rounded-full lg:hidden mr-2"
           onClick={setIsSidebar}
         >
           <svg
