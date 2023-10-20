@@ -16,13 +16,13 @@ const Menu = () => {
       <div className="px-[16px] md:px-[24px] lg:px-[32px] py-[32px]">
         <div>
           <h3 className="flex items-center text-[18px] md:text-[24px] lg:text-[28px] font-bold text-[#29361C]">
-            Welcome to <img src="/hand.png" alt="hand" className="h-[28px]" />
+            Welcome to <img src="/hand.png" alt="hand" className="h-[28px] " />
           </h3>
           <h3 className="text-[18px] md:text-[24px] lg:text-[28px] font-bold text-[#29361C]">
             Luchi’s Restaurant
           </h3>
         </div>
-        <img src="/banner.png" alt="banner" className="rounded-lg my-[24px] h-[200px] md:h-[220px] object-cover" />
+        <img src="/banner.png" alt="banner" className="rounded-lg my-[24px] " />
         <div className="mb-[24px] md:mb-[32px]">
           <ul className="flex overflow-x-auto gap-[8px] md:gap-[12px] pb-3">
             <li className="py-[8px] px-[10px] md:py-[12px] md:px-[18px] rounded-[24px] flex-shrink-0 bg-[#CA5834] text-white cursor-pointer">
