@@ -22,9 +22,9 @@ const Menu = () => {
             Luchi’s Restaurant
           </h3>
         </div>
-        <img src="/banner.png" alt="banner" className="rounded-lg my-[24px] h-[200px] md:h-[220px]" />
+        <img src="/banner.png" alt="banner" className="rounded-lg my-[24px] h-[200px] md:h-[220px] object-cover" />
         <div className="mb-[24px] md:mb-[32px]">
-          <ul className="flex overflow-x-auto gap-[8px] md:gap-[12px]">
+          <ul className="flex overflow-x-auto gap-[8px] md:gap-[12px] pb-3">
             <li className="py-[8px] px-[10px] md:py-[12px] md:px-[18px] rounded-[24px] flex-shrink-0 bg-[#CA5834] text-white cursor-pointer">
               All Meal
             </li>
