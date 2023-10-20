@@ -18,7 +18,7 @@ const Topbar = ({ setIsSidebar, userData }) => {
   };
 
   return (
-    <div className="flex border-b border-b-[#E4E7EC] w-full items-center justify-between px-6 gap-[16px] pt-6">
+    <div className="flex border-b border-b-[#E4E7EC] w-full items-center justify-between px-6 gap-[16px] py-3">
       <div className="flex items-center">
         <button
           class="h-12 w-12 bg-[#CA5834] px-3 py-3 rounded-full lg:hidden mr-2"
@@ -33,21 +33,21 @@ const Topbar = ({ setIsSidebar, userData }) => {
           >
             <path
               d="M4 6H20"
-              stroke="#1A202C"
+              stroke="#fff"
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
             />
             <path
               d="M4 12H20"
-              stroke="#1A202C"
+              stroke="#fff"
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
             />
             <path
               d="M4 18H20"
-              stroke="#1A202C"
+              stroke="#fff"
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -89,31 +89,54 @@ const Topbar = ({ setIsSidebar, userData }) => {
         </h4>{" "}
       </div>
       <div className="flex flex-row gap-3">
-        <div className="flex  gap-[12px] p-[8px] bg-gray-100/50  items-center rounded-[18px]">
-          <div class="bg-[#FAFAFA] rounded-full h-[48px] w-[48px] px-3 py-3 hidden lg:block ">
+          <div class="bg-[#FAFAFA] rounded-full h-[48px] w-[48px] px-3 py-3 ">
             <svg
-              width="28"
-              height="28"
-              viewBox="0 0 28 28"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M11.6665 5.83333C11.6665 5.21449 11.9123 4.621 12.3499 4.18342C12.7875 3.74583 13.381 3.5 13.9998 3.5C14.6187 3.5 15.2122 3.74583 15.6498 4.18342C16.0873 4.621 16.3332 5.21449 16.3332 5.83333C17.673 6.46687 18.8151 7.45305 19.6372 8.68618C20.4593 9.91932 20.9304 11.3529 20.9998 12.8333V16.3333C21.0876 17.0587 21.3445 17.7532 21.7498 18.3611C22.1551 18.9691 22.6974 19.4733 23.3332 19.8333H4.6665C5.30227 19.4733 5.84461 18.9691 6.24989 18.3611C6.65516 17.7532 6.91204 17.0587 6.99984 16.3333V12.8333C7.06932 11.3529 7.54036 9.91932 8.36245 8.68618C9.18454 7.45305 10.3267 6.46687 11.6665 5.83333"
-                stroke="#1A202C"
+                d="M7.34168 1.66663L4.32501 4.69163"
+                stroke="black"
                 stroke-width="1.5"
+                stroke-miterlimit="10"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               />
               <path
-                d="M10.5 19.8334V21C10.5 21.9283 10.8687 22.8185 11.5251 23.4749C12.1815 24.1313 13.0717 24.5 14 24.5C14.9283 24.5 15.8185 24.1313 16.4749 23.4749C17.1313 22.8185 17.5 21.9283 17.5 21V19.8334"
-                stroke="#1A202C"
+                d="M12.6583 1.66663L15.675 4.69163"
+                stroke="black"
                 stroke-width="1.5"
+                stroke-miterlimit="10"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               />
+              <path
+                d="M1.66669 6.54167C1.66669 5 2.49169 4.875 3.51669 4.875H16.4834C17.5084 4.875 18.3334 5 18.3334 6.54167C18.3334 8.33333 17.5084 8.20833 16.4834 8.20833H3.51669C2.49169 8.20833 1.66669 8.33333 1.66669 6.54167Z"
+                stroke="black"
+                stroke-width="1.5"
+              />
+              <path
+                d="M8.13336 11.6666V14.625"
+                stroke="black"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M11.9667 11.6666V14.625"
+                stroke="black"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M2.91669 8.33337L4.09169 15.5334C4.35835 17.15 5.00002 18.3334 7.38335 18.3334H12.4084C15 18.3334 15.3834 17.2 15.6834 15.6334L17.0834 8.33337"
+                stroke="black"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
             </svg>
-          </div>
 
           {/* <div
             class="bg-[#FAFAFA] rounded-[1000px]  items-center lg:pl-[8px] lg:pr-[16px] pl-[6px] pr-[14px] py-2 flex cursor-pointer "
@@ -220,8 +243,6 @@ const Topbar = ({ setIsSidebar, userData }) => {
             </div>
           </div>
         </Modal> */}
-
-       
       </div>
     </div>
   );
