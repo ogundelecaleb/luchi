@@ -4,6 +4,7 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { Routing, Gallery,Colorfilter } from "iconsax-react";
 
 const Sidebar = ({ isSidebarOpen, onClose }) => {
   const router = useLocation();
@@ -14,7 +15,6 @@ const Sidebar = ({ isSidebarOpen, onClose }) => {
         isSidebarOpen ? "block z-20 fixed inset-0 transition-opacity" : "hidden"
       }`}
     >
-      
       <div
         onClick={onClose}
         className="fixed inset-0 bg-[#29292980]  transition-opacity lg:relative"
@@ -60,7 +60,7 @@ const Sidebar = ({ isSidebarOpen, onClose }) => {
           }`}
         >
           <svg
-            class="mr-[12px]"
+            className="mr-[12px]"
             width="20"
             height="21"
             viewBox="0 0 20 21"
@@ -86,8 +86,12 @@ const Sidebar = ({ isSidebarOpen, onClose }) => {
               : "text-black"
           }`}
         >
-                 { window.location.pathname === "/track" ? (<img src="/trackingwhite.png" alt="filter" className="mr-[12px]"/>) : (<img src="/tracking.png" alt="filter" className="mr-[12px]"/>)}
-
+          <Routing
+            color={window.location.pathname === "/track" ? "#fff" : "#000"}
+            variant="Linear"
+            size={24}
+            className="mr-[12px]"
+          />
           Track Order
         </Link>
 
@@ -98,8 +102,14 @@ const Sidebar = ({ isSidebarOpen, onClose }) => {
               ? "bg-[#CA5834] text-[white] rounded-[40px]"
               : "text-black"
           }`}
-        >         { window.location.pathname === "/gallery" ? (<img src="/gallerywhite.png" alt="filter" className="mr-[12px]"/>) : (<img src="/gallery.png" alt="filter" className="mr-[12px]"/>)}
-
+        >
+          {" "}
+          <Gallery
+            color={window.location.pathname === "/gallery" ? "#fff" : "#000"}
+            variant="Linear"
+            size={24}
+            className="mr-[12px]"
+          />
           Gallery
         </Link>
         <Link
@@ -110,7 +120,12 @@ const Sidebar = ({ isSidebarOpen, onClose }) => {
               : "text-black"
           }`}
         >
-         { window.location.pathname === "/company" ? (<img src="/filterwhite.png" alt="filter" className="mr-[12px]"/>) : (<img src="/filter.png" alt="filter" className="mr-[12px]"/>)}
+         <Colorfilter
+            color={window.location.pathname === "/company" ? "#fff" : "#000"}
+            variant="Linear"
+            size={24}
+            className="mr-[12px]"
+          />
           Company
         </Link>
       </div>

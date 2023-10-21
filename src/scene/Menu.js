@@ -71,15 +71,15 @@ const Menu = () => {
           </ul>
         </div>
         <div className="flex justify-center">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-[20px] mx-auto">
-            {/* <div className="flex flex-wrap gap-[20px]"> */}
-            <div className="flex flex-col max-w-[280px] rounded-lg">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-[20px] ">
+            {/* <div className="flex flex-wrap gap-[20px] mx-auto"> */}
+            <div className="flex flex-col w-full sm:max-w-[320px] md:max-w-[280px] rounded-lg">
               <img
                 src="/egusi.png"
                 alt="egusi"
                 className="rounded-tr-lg rounded-tl-lg"
               />
-              <div className="p-[16px] md:p-[16px] lg:p-[16px] bg-[#FFF]">
+              <div className="p-[16px] md:p-[16px] lg:p-[16px] bg-[#FFF] rounded-br-lg rounded-bl-lg">
                 <div className="mb-[32px] md:mb-[40px] lg:mb-[48px]">
                   <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-black mb-[8px] font-bold">
                     Pounded Yam
@@ -98,7 +98,7 @@ const Menu = () => {
                   <div className="w-[45%]">
                     <button
                       onClick={HandleModalOpen}
-                      className="py-[px] px-[8px] md:py-[5px] md:px-[12px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
+                      className="py-[px] px-[8px] md:py-[5px] md:px-[12px] min-w-[110px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
                     >
                       Add to cart
                     </button>
@@ -107,7 +107,7 @@ const Menu = () => {
               </div>
             </div>
 
-            <div className="flex flex-col max-w-[280px] rounded-lg">
+            <div className="flex flex-col w-full sm:max-w-[320px] md:max-w-[280px] rounded-lg">
               <img
                 src="/jollof.png"
                 alt="egusi"
@@ -141,7 +141,7 @@ const Menu = () => {
               </div>
             </div>
 
-            <div className="flex flex-col max-w-[280px] rounded-lg">
+            <div className="flex flex-col w-full sm:max-w-[320px] md:max-w-[280px] rounded-lg">
               <img
                 src="/sharwarma.png"
                 alt="egusi"
@@ -174,7 +174,7 @@ const Menu = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col max-w-[280px] rounded-lg">
+            <div className="flex flex-col w-full sm:max-w-[320px] md:max-w-[280px] rounded-lg">
               <img
                 src="/egusi.png"
                 alt="egusi"
@@ -207,7 +207,7 @@ const Menu = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col max-w-[280px] rounded-lg">
+            <div className="flex flex-col w-full sm:max-w-[320px] md:max-w-[280px] rounded-lg">
               <img
                 src="/jollof.png"
                 alt="egusi"
@@ -240,7 +240,7 @@ const Menu = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col max-w-[280px] rounded-lg">
+            <div className="flex flex-col w-full sm:max-w-[320px] md:max-w-[280px] rounded-lg">
               <img
                 src="/sharwarma.png"
                 alt="egusi"
@@ -278,7 +278,7 @@ const Menu = () => {
       </div>
       {/* More Details on Merchant Channel */}
       <Modal isOpen={isOpen} onClose={HandleModalClose}>
-        <div className="inline-block overflow-hidden text-left relative align-bottom transition-all transform bg-[white] rounded-2xl shadow-xl sm:my-8 sm:align-middle sm:max-w-[713px] sm:w-full">
+        <div className="inline-block overflow-hidden text-left relative align-bottom transition-all transform bg-[white] rounded-2xl shadow-xl sm:my-8 sm:align-middle w-full sm:max-w-[713px] sm:w-full">
           <div className="py-4 flex justify-end px-5 border-b border-b-[#edf2f7]">
             <svg
               onClick={HandleModalClose}

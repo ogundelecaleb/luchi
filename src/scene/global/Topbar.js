@@ -1,13 +1,18 @@
 /* eslint-disable */
 
 import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectItems } from "../../slices/basketSlice";
 import Modal from "../../components/Modal";
+import ModalLeft from "../../components/ModalLeft";
+import { Trash } from "iconsax-react";
 
 const Topbar = ({ setIsSidebar, userData }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
+  const [isPaymentOptionOpen, setIsPaymentOptionOpen] = useState(false);
+  const [isSuccessOpen, setIsSuccessOpen] = useState(false);
   const [bizDetails, setBizDetails] = useState(true);
   const [summary, setSummary] = useState(false);
   const navigate = useNavigate();
@@ -16,20 +21,48 @@ const Topbar = ({ setIsSidebar, userData }) => {
 
   const HandleModalOpen = () => {
     setIsOpen(true);
-    setBizDetails(true)
-    setSummary(false)
   };
 
   const HandleModalClose = () => {
     setIsOpen(false);
+    setBizDetails(true);
+    setSummary(false);
   };
 
-  const Handledelivery = (e)=> {
-    e.preventDefault()
-    setBizDetails(false)
-    setSummary(true)
-    
-  }
+  const HandleDetailsClose = () => {
+    setIsDetailsModalOpen(false);
+  };
+
+  const HandleCheckout = () => {
+    setIsOpen(false);
+    setIsDetailsModalOpen(true);
+  };
+
+  const Handledelivery = (e) => {
+    e.preventDefault();
+    setBizDetails(false);
+    setSummary(true);
+  };
+
+  const HandleOptionOpen = () => {
+    setIsDetailsModalOpen(false);
+
+    setIsPaymentOptionOpen(true);
+  };
+
+  const HandleOptionClose = () => {
+    setIsPaymentOptionOpen(false);
+  };
+
+  const HandleSuccessOpen = () => {
+    setIsSuccessOpen(true);
+
+    setIsPaymentOptionOpen(false);
+  };
+
+  const HandlSuccessClose = () => {
+    setIsSuccessOpen(false);
+  };
 
   return (
     <div className="flex border-b border-b-[#E4E7EC] w-full items-center justify-between px-6 gap-[16px] py-3">
@@ -223,11 +256,11 @@ const Topbar = ({ setIsSidebar, userData }) => {
         </div>
 
         {/* Create filter Modal */}
-        <Modal isOpen={isOpen} onClose={HandleModalClose}>
-          <div className="inline-block overflow-hidden text-left relative align-bottom transition-all transform bg-[white] rounded-2xl shadow-xl sm:my-8 sm:align-middle sm:max-w-[713px] sm:w-full">
+        <Modal isOpen={isDetailsModalOpen} onClose={HandleDetailsClose}>
+          <div className="inline-block overflow-hidden text-left relative align-bottom transition-all transform bg-[white] rounded-2xl shadow-xl sm:my-8 sm:align-middle min-w-[280px] sm:max-w-[360px] sm: md:max-w-[713px] md:w-full">
             <div className="py-4 flex justify-end px-5 ">
               <svg
-                onClick={HandleModalClose}
+                onClick={HandleDetailsClose}
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
@@ -377,10 +410,13 @@ const Topbar = ({ setIsSidebar, userData }) => {
                         className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
                         placeholder=""
                         autoFocus
-                        
                       />
                     </div>
-                    <button onClick={Handledelivery} type="submit" className="bg-[#CA5834] text-white rounded-[40px] text-center w-full py-[10px] mb-[32px]">
+                    <button
+                      onClick={Handledelivery}
+                      type="submit"
+                      className="bg-[#CA5834] text-white rounded-[40px] text-center w-full py-[10px] mb-[32px]"
+                    >
                       Save and continue
                     </button>
                   </form>
@@ -399,23 +435,27 @@ const Topbar = ({ setIsSidebar, userData }) => {
                   <div className="flex flex-col gap-3">
                     <div className="flex items-center justify-between mb-1">
                       <h3>First Name</h3>
-                      <p>Tosin</p>
+                      <p className="text-[#29361C] font-medium">Tosin</p>
                     </div>
                     <div className="flex items-center justify-between mb-1">
                       <h3>Last Name</h3>
-                      <p>Tosin</p>
+                      <p className="text-[#29361C] font-medium">Tosin</p>
                     </div>
                     <div className="flex items-center justify-between mb-1">
                       <h3>Email Address</h3>
-                      <p>TosinT@Gmail.com</p>
+                      <p className="text-[#29361C] font-medium">
+                        TosinT@Gmail.com
+                      </p>
                     </div>
                     <div className="flex items-center justify-between mb-1">
                       <h3>Phone Number</h3>
-                      <p>0812356498</p>
+                      <p className="text-[#29361C] font-medium">0812356498</p>
                     </div>
-                    <div className="flex items-center justify-between mb-1">
-                      <h3>Address</h3>
-                      <p>2, Agege Motor Road, Olojo Road, Ojo, Lagos Nigeria</p>
+                    <div className="flex items-center justify-between  gap-2mb-1">
+                      <h3 className="mr-2">Address</h3>
+                      <p className="text-[#29361C] font-medium text-left">
+                        2, Agege Motor Road, Olojo Road, Ojo, Lagos Nigeria
+                      </p>
                     </div>
                     <div className="flex items-center justify-between mb-1">
                       <h3>LGA</h3>
@@ -439,15 +479,272 @@ const Topbar = ({ setIsSidebar, userData }) => {
                     </div>
                     <div className="flex items-center justify-between mb-1">
                       <h3>Total Fee</h3>
-                      <p className="text-base lg:text-lg font-semibold">N1,000.00</p>
+                      <p className="text-base lg:text-lg font-semibold">
+                        N1,000.00
+                      </p>
                     </div>
                   </div>
-                  <button className="bg-[#CA5834] text-white rounded-[40px] text-center w-full py-[10px] mb-[32px]">
+                  <button
+                    onClick={HandleOptionOpen}
+                    className="bg-[#CA5834] text-white rounded-[40px] text-center w-full py-[10px] mb-[32px]"
+                  >
                     Continue to pay
                   </button>
                 </div>
               </div>
             )}
+          </div>
+        </Modal>
+        <ModalLeft isOpen={isOpen} onClose={HandleModalClose}>
+          <div className="p-[24px] h-full">
+            <div className="flex pb-2 border-b mb-3">
+              <svg
+                onClick={HandleModalClose}
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+                  stroke="#29361C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M9.17004 14.83L14.83 9.17004"
+                  stroke="#29361C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M14.83 14.83L9.17004 9.17004"
+                  stroke="#29361C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <div className="flex-1 text-center">
+                <p className="text-[#29361C] text-[18px] md:text-[20px] lg:text-[24px] font-medium">
+                  View Cart
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col  justify-between h-full">
+              <div className="flex ">
+                <img
+                  src="/egusi.png"
+                  alt=""
+                  className="h-[50px] md:h-[78px] mr-[16px]"
+                />{" "}
+                <div className="flex justify-between flex-col">
+                  <p>Pounded Yam</p>
+                  <div className="flex items-center">
+                    <div className="h-4 w-4 flex justify-center items-center rounded-full border border-slate-300  cursor-pointer hover:scale-150">
+                      <p className="">-</p>
+                    </div>
+                    <p className="py-2 px-3 cursor-pointer text-[16] md:text-[18px] font-bold">
+                      1
+                    </p>
+                    <div className="h-4 w-4 flex justify-center items-center rounded-full border border-slate-300  cursor-pointer hover:scale-150">
+                      <p className="">+</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-1 flex-col justify-between">
+                  <p className="self-end text-[#CA5834] font-bold">
+                    N16,000.00
+                  </p>
+                  <div className="h-6 w-6 flex justify-center items-center rounded-full border border-slate-300 self-end ">
+                    <Trash size={18} />
+                  </div>
+                </div>
+              </div>
+
+              {/* checkout Bottom section */}
+              <div>
+                <div className="flex flex-col gap-2 mb-3">
+                  <div className="flex justify-between items-center">
+                    <p className="text-[#232323]">Menu Order</p>{" "}
+                    <button className="bg-[#EDFFDC] text-black rounded-[24px] text-[14px] py-[6px] px-[12px]">
+                      3 orders
+                    </button>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <p className="text-[#232323]">Delivery Fee</p>{" "}
+                    <p className="text-[#232323] font-bold"> N 1,200.00 </p>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <p className="text-[#232323]">SubTotal</p>{" "}
+                    <p className="text-[#232323] font-bold"> N 6,000.00 </p>
+                  </div>
+                </div>
+                <button
+                  onClick={HandleCheckout}
+                  className="bg-[#CA5834] text-white rounded-[40px] text-center w-full py-[10px] mb-[32px]"
+                >
+                  Checkout
+                </button>
+              </div>
+            </div>
+          </div>
+        </ModalLeft>
+
+        <Modal isOpen={isPaymentOptionOpen} onClose={HandleOptionClose}>
+          <div className="inline-block overflow-hidden text-left relative align-bottom transition-all transform bg-[white] rounded-2xl shadow-xl sm:my-8 sm:align-middle min-w-[280px] sm:max-w-[360px] sm: md:max-w-[713px] md:w-full">
+            <div className="py-4 flex justify-end px-5 ">
+              <svg
+                onClick={HandleOptionClose}
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+                  stroke="#29361C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M9.17004 14.83L14.83 9.17004"
+                  stroke="#29361C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M14.83 14.83L9.17004 9.17004"
+                  stroke="#29361C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <div className="text-center mb-[28px] md:mb-[32px]">
+              {" "}
+              <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-[#29361C] font-medium">
+                Payment Methods
+              </h3>
+            </div>
+            <form className="px-5">
+              <div className="flex gap-2 w-full md:w-[80%] lg:w-[65%] mb-[36px] md:mb-[40px] lg:mb-[48px]">
+                <div>
+                  <input type="radio" className="align-top" />
+                </div>{" "}
+                <div>
+                  <div className="flex  gap-1">
+                    <h2 className="text-[18px] md:text-[20px] lg:text-[24px] font-medium text-black">
+                      Pay with Card
+                    </h2>
+                    <button className="bg-[#EDFFDC] text-black rounded-[24px] text-[14px] py-[6px] px-[12px]">
+                      coming soon
+                    </button>
+                  </div>
+                  <p className="text-[#545454] text-[14px] md:text-[16px]">
+                    Our secure payment gateway enables you to conveniently pay
+                    for your purchases using your credit or debit card.
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-2 w-full md:w-[80%] lg:w-[65%] mb-[48px] md:mb-[92px]">
+                <div>
+                  <input type="radio" className="p-[24px]" />
+                </div>
+
+                <div>
+                  <h2 className="text-[18px] md:text-[20px] lg:text-[24px] font-medium text-black">
+                    Pay with Bank Transfer
+                  </h2>
+
+                  <p className="text-[#545454] text-[14px] md:text-[16px]">
+                    Our secure payment gateway enables you to conveniently pay
+                    for your purchases using our bank transfer.
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                className="bg-[#CA5834] text-white rounded-[40px] text-center w-full py-[10px] mb-[32px]"
+                onClick={HandleSuccessOpen}
+              >
+                Make Payment
+              </button>
+            </form>
+          </div>
+        </Modal>
+
+        <Modal isOpen={isSuccessOpen} onClose={HandlSuccessClose}>
+          <div className="inline-block overflow-hidden text-left relative align-bottom transition-all transform bg-[white] rounded-2xl shadow-xl sm:my-8 sm:align-middle min-w-[280px] sm:max-w-[360px] sm: md:max-w-[713px] md:w-full">
+            <div className="py-4 flex justify-end px-5 ">
+              <svg
+                onClick={HandlSuccessClose}
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+                  stroke="#29361C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M9.17004 14.83L14.83 9.17004"
+                  stroke="#29361C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M14.83 14.83L9.17004 9.17004"
+                  stroke="#29361C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <div className="text-center mb-[28px] md:mb-[32px]">
+              {" "}
+              <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-[#29361C] font-medium">
+                Success!!
+              </h3>
+            </div>
+            <div className="px-5 flex flex-col justify-center ">
+              <div className="max-w-[411px] mx-auto">
+                <img
+                  src="/success.png"
+                  alt="food"
+                  className="h-[60px] md:h-[111px] mb-[24px] md:mb-[36px] lg:mb-[48px]
+                   mx-auto"
+                />
+                <h3 className="text-center mb-[18px] md:mb-[20px] lg:mb-[24px]">
+                  Your order is on its way!
+                </h3>
+                <p className="text-center mb-[18px] md:mb-[20px] lg:mb-[24px]">
+                  We have sent your order’s receipt to tosint@gmail.com. Kindly
+                  check your mail to see your order’s details.
+                </p>{" "}
+                <Link onClick={HandlSuccessClose} to="/track">
+                  <div className="w-full flex justify-center">
+                    <button className="bg-[#CA5834] text-white rounded-[40px] w-[70%] text-center mx-auto py-[10px] mb-[32px]">
+                      Track Order
+                    </button>
+                  </div>
+                </Link>
+              </div>
+            </div>
           </div>
         </Modal>
       </div>
