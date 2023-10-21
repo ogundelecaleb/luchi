@@ -14,6 +14,7 @@ const Sidebar = ({ isSidebarOpen, onClose }) => {
         isSidebarOpen ? "block z-20 fixed inset-0 transition-opacity" : "hidden"
       }`}
     >
+      
       <div
         onClick={onClose}
         className="fixed inset-0 bg-[#29292980]  transition-opacity lg:relative"
@@ -54,7 +55,7 @@ const Sidebar = ({ isSidebarOpen, onClose }) => {
           to="/menu"
           className={`mx-[24px] pl-[17px] pr-[77px] rounded-[40px] py-[13px]  flex tracking-[0.2px] font-medium text-[14px] leading-[21px] items-end mb-[12px] ${
             window.location.pathname === "/menu"
-              ? "bg-[#CA5834] text-[white] rounded-xl"
+              ? "bg-[#CA5834] text-[white] rounded-[40px]"
               : "text-black"
           }`}
         >
@@ -81,7 +82,7 @@ const Sidebar = ({ isSidebarOpen, onClose }) => {
           to="/track"
           className={`mx-[24px] pl-[17px] pr-[77px] rounded-[40px] py-[13px]  flex tracking-[0.2px] font-medium text-[14px] leading-[21px] items-end mb-[12px] ${
             window.location.pathname === "/track"
-              ? "bg-[#CA5834] text-[white] rounded-xl"
+              ? "bg-[#CA5834] text-[white] rounded-[40px]"
               : "text-black"
           }`}
         >
@@ -94,7 +95,7 @@ const Sidebar = ({ isSidebarOpen, onClose }) => {
           to="/gallery"
           className={`mx-[24px] pl-[17px] pr-[77px] rounded-[40px] py-[13px]  flex tracking-[0.2px] font-medium text-[14px] leading-[21px] items-end mb-[12px] ${
             window.location.pathname === "/gallery"
-              ? "bg-[#CA5834] text-[white] rounded-xl"
+              ? "bg-[#CA5834] text-[white] rounded-[40px]"
               : "text-black"
           }`}
         >         { window.location.pathname === "/gallery" ? (<img src="/gallerywhite.png" alt="filter" className="mr-[12px]"/>) : (<img src="/gallery.png" alt="filter" className="mr-[12px]"/>)}
@@ -105,7 +106,7 @@ const Sidebar = ({ isSidebarOpen, onClose }) => {
           to="/company"
           className={`mx-[24px] pl-[17px] pr-[77px] rounded-[40px] py-[13px]  flex tracking-[0.2px] font-medium text-[14px] leading-[21px] items-end mb-[12px] ${
             window.location.pathname === "/company"
-              ? "bg-[#CA5834] text-[white] rounded-xl"
+              ? "bg-[#CA5834] text-[white] rounded-[40px]"
               : "text-black"
           }`}
         >

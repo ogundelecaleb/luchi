@@ -1,7 +1,40 @@
 import React, { useState } from "react";
 import Modal from "../components/Modal";
+import { useDispatch } from "react-redux";
+import { addToBasket } from "../slices/basketSlice";
 
 const Menu = () => {
+  const dispatch = useDispatch();
+
+  const product = {
+    id: "1",
+    title: "Pounded Yam",
+    price: 5000,
+    description: " Pounded yam with hot soup of Egusi with ogufe  ",
+  };
+  const [totalPrice, setTotalPrice] = useState(product.price);
+
+  const addItemToBasket = () => {
+    const products = {
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      description: product.description,
+    };
+    //push item into redux
+    dispatch(addToBasket(products));
+  };
+
+  const increase = () => {
+    const newTotal = totalPrice + product.price;
+    setTotalPrice(newTotal);
+  };
+  const decrease = () => {
+    if (totalPrice && totalPrice > 0) {
+      const newTotal = totalPrice - product.price;
+      setTotalPrice(newTotal);
+    }
+  };
   const [isOpen, setIsOpen] = useState(false);
 
   const HandleModalOpen = () => {
@@ -37,15 +70,15 @@ const Menu = () => {
           </ul>
         </div>
         <div className="flex justify-center">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[20px] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 gap-[20px] mx-auto">
             {/* <div className="flex flex-wrap gap-[20px]"> */}
-            <div className="flex flex-col max-w-[348px] rounded-lg">
+            <div className="flex flex-col max-w-[280px] rounded-lg">
               <img
                 src="/egusi.png"
                 alt="egusi"
                 className="rounded-tr-lg rounded-tl-lg"
               />
-              <div className="p-[16px] md:p-[20px] lg:p-[24px] bg-[#FFF]">
+              <div className="p-[16px] md:p-[16px] lg:p-[16px] bg-[#FFF]">
                 <div className="mb-[32px] md:mb-[40px] lg:mb-[48px]">
                   <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-black mb-[8px] font-bold">
                     Pounded Yam
@@ -56,26 +89,30 @@ const Menu = () => {
                 </div>
 
                 <div className="flex justify-between items-center ">
-                  <h2 className="text-[18px] md:text-[20px] lg:text-[24px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
-                    N5,000.00
-                  </h2>
-                  <button
-                    onClick={HandleModalOpen}
-                    className="py-[8px] px-[10px] md:py-[12px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
-                  >
-                    Add to cart
-                  </button>
+                  <div className="w-[30%]">
+                    <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
+                      N5,000.00
+                    </h2>
+                  </div>
+                  <div className="w-[45%]">
+                    <button
+                      onClick={HandleModalOpen}
+                      className="py-[px] px-[8px] md:py-[5px] md:px-[12px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
+                    >
+                      Add to cart
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="flex flex-col max-w-[348px] rounded-lg">
+            <div className="flex flex-col max-w-[280px] rounded-lg">
               <img
                 src="/jollof.png"
                 alt="egusi"
                 className="rounded-tr-lg rounded-tl-lg"
               />
-              <div className="p-[16px] md:p-[20px] lg:p-[24px] bg-[#FFF]">
+              <div className="p-[16px] md:p-[16px] lg:p-[16px] bg-[#FFF]">
                 <div className="mb-[32px] md:mb-[40px] lg:mb-[48px]">
                   <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-black mb-[8px] font-bold">
                     Pounded Yam
@@ -86,23 +123,30 @@ const Menu = () => {
                 </div>
 
                 <div className="flex justify-between items-center ">
-                  <h2 className="text-[18px] md:text-[20px] lg:text-[24px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
-                    N16,000.00
-                  </h2>
-                  <button className="py-[8px] px-[10px] md:py-[12px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]">
-                    Add to cart
-                  </button>
+                  <div className="w-[30%]">
+                    <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
+                      N5,000.00
+                    </h2>
+                  </div>
+                  <div className="w-[45%]">
+                    <button
+                      onClick={HandleModalOpen}
+                      className="py-[px] px-[8px] md:py-[5px] md:px-[12px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
+                    >
+                      Add to cart
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="flex flex-col max-w-[348px] rounded-lg">
+            <div className="flex flex-col max-w-[280px] rounded-lg">
               <img
                 src="/sharwarma.png"
                 alt="egusi"
                 className="rounded-tr-lg rounded-tl-lg"
               />
-              <div className="p-[16px] md:p-[20px] lg:p-[24px] bg-[#FFF]">
+              <div className="p-[16px] md:p-[16px] lg:p-[16px] bg-[#FFF]">
                 <div className="mb-[32px] md:mb-[40px] lg:mb-[48px]">
                   <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-black mb-[8px] font-bold">
                     Pounded Yam
@@ -113,12 +157,19 @@ const Menu = () => {
                 </div>
 
                 <div className="flex justify-between items-center ">
-                  <h2 className="text-[18px] md:text-[20px] lg:text-[24px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
-                    N2,500.00
-                  </h2>
-                  <button className="py-[8px] px-[10px] md:py-[12px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]">
-                    Add to cart
-                  </button>
+                  <div className="w-[30%]">
+                    <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
+                      N5,000.00
+                    </h2>
+                  </div>
+                  <div className="w-[45%]">
+                    <button
+                      onClick={HandleModalOpen}
+                      className="py-[px] px-[8px] md:py-[5px] md:px-[12px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
+                    >
+                      Add to cart
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -139,12 +190,19 @@ const Menu = () => {
                 </div>
 
                 <div className="flex justify-between items-center ">
-                  <h2 className="text-[18px] md:text-[20px] lg:text-[24px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
-                    N5,000.00
-                  </h2>
-                  <button className="py-[8px] px-[10px] md:py-[12px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]">
-                    Add to cart
-                  </button>
+                  <div className="w-[30%]">
+                    <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
+                      N5,000.00
+                    </h2>
+                  </div>
+                  <div className="w-[45%]">
+                    <button
+                      onClick={HandleModalOpen}
+                      className="py-[px] px-[8px] md:py-[5px] md:px-[12px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
+                    >
+                      Add to cart
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -205,7 +263,7 @@ const Menu = () => {
       </div>
       {/* More Details on Merchant Channel */}
       <Modal isOpen={isOpen} onClose={HandleModalClose}>
-        <div className="inline-block overflow-hidden text-left relative align-bottom transition-all transform bg-[white] rounded-2xl shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+        <div className="inline-block overflow-hidden text-left relative align-bottom transition-all transform bg-[white] rounded-2xl shadow-xl sm:my-8 sm:align-middle sm:max-w-[713px] sm:w-full">
           <div className="py-4 flex justify-end px-5 border-b border-b-[#edf2f7]">
             <svg
               onClick={HandleModalClose}
@@ -253,7 +311,7 @@ const Menu = () => {
                   </h3>
                 </div>
                 <h2 className="text-[18px] md:text-[20px] lg:text-[24px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
-                  N2,500.00
+                  {product.price}
                 </h2>
               </div>
               <p className="text-[14px] md:text-[16px] mb-[24px] md:mb-[32px] xl:mb-[48px]">
@@ -284,7 +342,38 @@ const Menu = () => {
                   </div>
                 </div>
               </div>
-<div></div>
+              <div className="mt-[36px] md:mt-[48px] flex items-center justify-between  mb-[42px] md:mb-[56px] lg:mb-[72px] ">
+                <div>
+                  <h3 className="text-[16px] lg:text-[18px] font-medium">
+                    Total Order: {totalPrice}
+                  </h3>
+                </div>
+                <div className="flex items-center gap-2 flex-col-reverse  md:flex-row">
+                  <div
+                    onClick={addItemToBasket}
+                    className="py-[8px] px-[10px] md:py-[12px] md:px-[18px] rounded-[24px] flex-shrink-0 bg-[#CA5834] text-white cursor-pointer"
+                  >
+                    Add to cart
+                  </div>
+                  <button className="md:py-[2px] px-[16px]  md:px-[24px] lg:px-[30px] border border-[#CA5834] rounded-[24px] flex items-center">
+                    <p
+                      onClick={decrease}
+                      className="py-2 px-3 cursor-pointer hover:scale-150"
+                    >
+                      -
+                    </p>
+                    <p className="py-2 px-3 cursor-pointer text-[16] md:text-[18px] font-bold">
+                      1
+                    </p>
+                    <p
+                      onClick={increase}
+                      className="py-2 px-3 cursor-pointer hover:scale-150"
+                    >
+                      +
+                    </p>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

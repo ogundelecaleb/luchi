@@ -2,13 +2,15 @@
 
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectItems } from "../../slices/basketSlice";
 
 const Topbar = ({ setIsSidebar, userData }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-
+  const items = useSelector(selectItems);
   const handleIsModalOpen = () => {
     setIsModalOpen(true);
   };
@@ -21,7 +23,7 @@ const Topbar = ({ setIsSidebar, userData }) => {
     <div className="flex border-b border-b-[#E4E7EC] w-full items-center justify-between px-6 gap-[16px] py-3">
       <div className="flex items-center">
         <button
-          class="h-12 w-12 bg-[#CA5834] px-3 py-3 rounded-full lg:hidden mr-2"
+          class="h-12 w-12 bg-[#CA5834] relative px-3 py-3 rounded-full lg:hidden mr-2"
           onClick={setIsSidebar}
         >
           <svg
@@ -53,7 +55,7 @@ const Topbar = ({ setIsSidebar, userData }) => {
               stroke-linejoin="round"
             />
           </svg>
-        </button>
+        </button>{" "}
         <h4 className="text-[24px] text-[#1a202c] font-bold hidden md:block">
           {location.pathname === "/dashboard"
             ? "Dashboard"
@@ -89,6 +91,7 @@ const Topbar = ({ setIsSidebar, userData }) => {
         </h4>{" "}
       </div>
       <div className="flex flex-row gap-3">
+        <div className="relative cursor-pointer">
           <div class="bg-[#FAFAFA] rounded-full h-[48px] w-[48px] px-3 py-3 ">
             <svg
               width="20"
@@ -137,6 +140,10 @@ const Topbar = ({ setIsSidebar, userData }) => {
                 stroke-linecap="round"
               />
             </svg>
+            <span className="absolute top-1 right-0 md:left-7 h-4 w-4 bg-[#CA5834] text-white flex justify-center items-center text-center rounded-full  font-bold">
+              {items.length}
+            </span>
+          </div>
 
           {/* <div
             class="bg-[#FAFAFA] rounded-[1000px]  items-center lg:pl-[8px] lg:pr-[16px] pl-[6px] pr-[14px] py-2 flex cursor-pointer "

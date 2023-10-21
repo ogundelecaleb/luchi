@@ -6,9 +6,15 @@ import Track from "./scene/Track";
 import Company from "./scene/Company";
 import Gallery from "./scene/Gallery";
 import Menu from "./scene/Menu";
+import { Provider } from "react-redux";
+import { store } from "./app/store";
+
+
 
 function App() {
   return (
+    <Provider store={store}>
+
     <Router>
       <Routes>
         <Route  element={<Home />}>
@@ -20,6 +26,7 @@ function App() {
         </Route>
       </Routes>
     </Router>
+    </Provider>
   );
 }
 
