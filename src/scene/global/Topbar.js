@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectItems } from "../../slices/basketSlice";
+import Modal from "../../components/Modal";
 
 const Topbar = ({ setIsSidebar, userData }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,12 +12,13 @@ const Topbar = ({ setIsSidebar, userData }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const items = useSelector(selectItems);
-  const handleIsModalOpen = () => {
-    setIsModalOpen(true);
+
+  const HandleModalOpen = () => {
+    setIsOpen(true);
   };
 
-  const handleIsModalClose = () => {
-    setIsModalOpen(false);
+  const HandleModalClose = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -91,7 +93,7 @@ const Topbar = ({ setIsSidebar, userData }) => {
         </h4>{" "}
       </div>
       <div className="flex flex-row gap-3">
-        <div className="relative cursor-pointer">
+        <div onClick={HandleModalOpen} className="relative cursor-pointer">
           <div class="bg-[#FAFAFA] rounded-full h-[48px] w-[48px] px-3 py-3 ">
             <svg
               width="20"
@@ -211,45 +213,167 @@ const Topbar = ({ setIsSidebar, userData }) => {
         </div>
 
         {/* Create filter Modal */}
-        {/* <Modal isOpen={isModalOpen} onClose={handleIsModalClose}>
-          <div className="inline-block absolute px-4 pb-3 right-4 top-10 overflow-hidden text-left align-bottom transition-all transform bg-[white] rounded-2xl shadow-xl sm:my-8 sm:align-middle ">
-            <div className="flex flex-col w-[200px] max-w-[200px] justify-between mx-0 mt-4">
-              <div className=" border-b-[#edf2f7] border-b pb-[17px]">
-                <h3 className="text-[16px] font-bold text-[#1a202c] pb-[4px]">
-                  {userData.fullName}
-                </h3>
-                <p className="text-[12px] text-[#718096]">
-                  {userData.role} account
-                </p>
-              </div>
+        <Modal isOpen={isOpen} onClose={HandleModalClose}>
+          <div className="inline-block overflow-hidden text-left relative align-bottom transition-all transform bg-[white] rounded-2xl shadow-xl sm:my-8 sm:align-middle sm:max-w-[713px] sm:w-full">
+            <div className="py-4 flex justify-end px-5 ">
+              <svg
+                onClick={HandleModalClose}
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+                  stroke="#29361C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M9.17004 14.83L14.83 9.17004"
+                  stroke="#29361C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M14.83 14.83L9.17004 9.17004"
+                  stroke="#29361C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>{" "}
+            <div className="text-center mb-[28px] md:mb-[32px]">
+              {" "}
+              <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-[#29361C] font-medium">
+                Delivery Details
+              </h3>
+            </div>
+            <div className="px-5 min-w-[300px]">
+              <form>
+                <div>
+                  <div className="flex items-center flex-col md:flex-row justify-between mb-[24px]">
+                    <div className="w-full md:w-[48%]">
+                      <label className="text-black  text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
+                        First Name
+                      </label>
+                      <input
+                        id="c_number"
+                        type="text"
+                        className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
+                        placeholder=""
+                        autoFocus
+                        required
+                      />
+                    </div>
+                    <div className="w-full md:w-[48%]">
+                      <label className="text-black  text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
+                        Last Name
+                      </label>
+                      <input
+                        id="c_number"
+                        type="text"
+                        className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
+                        placeholder=""
+                        autoFocus
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="flex items-center flex-col md:flex-row justify-between mb-[24px]">
+                    <div className="w-full md:w-[48%]">
+                      <label className="text-black text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
+                        Email Adress
+                      </label>
+                      <input
+                        id="c_number"
+                        type="text"
+                        className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
+                        placeholder=""
+                        autoFocus
+                        required
+                      />
+                    </div>
+                    <div className="w-full md:w-[48%]">
+                      <label className="text-black  text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
+                        Phone Number
+                      </label>
+                      <input
+                        id="c_number"
+                        type="text"
+                        className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
+                        placeholder=""
+                        autoFocus
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="mb-[24px]">
+                    <label className="text-black  text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
+                      Delivery address
+                    </label>
+                    <input
+                      id="c_number"
+                      type="text"
+                      className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
+                      placeholder=""
+                      autoFocus
+                      required
+                    />
+                  </div>{" "}
+                  <div className="flex items-center flex-col md:flex-row justify-between mb-[24px]">
+                    <div className="w-full md:w-[48%]">
+                      <label className="text-black text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
+                        Select State
+                      </label>
+                      <input
+                        id="c_number"
+                        type="text"
+                        className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
+                        placeholder=""
+                        autoFocus
+                        required
+                      />
+                    </div>
+                    <div className="w-full md:w-[48%]">
+                      <label className="text-black  text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
+                        Select LGA
+                      </label>
+                      <input
+                        id="c_number"
+                        type="text"
+                        className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
+                        placeholder=""
+                        autoFocus
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
 
-              <div
-                onClick={() => {
-                  handleIsModalClose();
-                  navigate("/accountDetails");
-                  setIsOpen(false);
-                }}
-                className="flex flex-row gap-[12px] pt-[17px] mb-3 cursor-pointer"
-              >
-                <img src="./profile.png" alt="" />
-                <p className=" text-[#1a202c] text-[14px] ">My Profile</p>
-              </div>
-              <div
-                onClick={() => {
-                  // navigate("/login");
-                  handleIsModalClose();
-                  api.logout();
-                  navigate("/login");
-                  setIsOpen(false);
-                }}
-                className="flex flex-row gap-[12px] pt-[23px] cursor-pointer mb-3"
-              >
-                <img src="./logout.png" alt="" />
-                <p className=" text-[#1a202c] text-[14px] ">Log out</p>
-              </div>
+                <div className="mb-[40px]">
+                  <label className="text-black  text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
+                    Delivery Note
+                  </label>
+                  <textarea
+                    id="c_number"
+                    type="text"
+                    className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
+                    placeholder=""
+                    autoFocus
+                    required
+                  />
+                </div>
+                <button className="bg-[#CA5834] text-white rounded-[40px] text-center w-full py-[10px] mb-[32px]"
+            >Save and continue</button>
+              </form>
             </div>
           </div>
-        </Modal> */}
+        </Modal>
       </div>
     </div>
   );

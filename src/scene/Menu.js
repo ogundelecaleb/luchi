@@ -23,6 +23,7 @@ const Menu = () => {
     };
     //push item into redux
     dispatch(addToBasket(products));
+    HandleModalClose()
   };
 
   const increase = () => {
