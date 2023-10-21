@@ -8,18 +8,28 @@ import Modal from "../../components/Modal";
 
 const Topbar = ({ setIsSidebar, userData }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [bizDetails, setBizDetails] = useState(true);
+  const [summary, setSummary] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const items = useSelector(selectItems);
 
   const HandleModalOpen = () => {
     setIsOpen(true);
+    setBizDetails(true)
+    setSummary(false)
   };
 
   const HandleModalClose = () => {
     setIsOpen(false);
   };
+
+  const Handledelivery = (e)=> {
+    e.preventDefault()
+    setBizDetails(false)
+    setSummary(true)
+    
+  }
 
   return (
     <div className="flex border-b border-b-[#E4E7EC] w-full items-center justify-between px-6 gap-[16px] py-3">
@@ -247,131 +257,197 @@ const Topbar = ({ setIsSidebar, userData }) => {
                 />
               </svg>
             </div>{" "}
-            <div className="text-center mb-[28px] md:mb-[32px]">
-              {" "}
-              <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-[#29361C] font-medium">
-                Delivery Details
-              </h3>
-            </div>
-            <div className="px-5 min-w-[300px]">
-              <form>
-                <div>
-                  <div className="flex items-center flex-col md:flex-row justify-between mb-[24px]">
-                    <div className="w-full md:w-[48%]">
-                      <label className="text-black  text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
-                        First Name
-                      </label>
-                      <input
-                        id="c_number"
-                        type="text"
-                        className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
-                        placeholder=""
-                        autoFocus
-                        required
-                      />
-                    </div>
-                    <div className="w-full md:w-[48%]">
-                      <label className="text-black  text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
-                        Last Name
-                      </label>
-                      <input
-                        id="c_number"
-                        type="text"
-                        className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
-                        placeholder=""
-                        autoFocus
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="flex items-center flex-col md:flex-row justify-between mb-[24px]">
-                    <div className="w-full md:w-[48%]">
-                      <label className="text-black text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
-                        Email Adress
-                      </label>
-                      <input
-                        id="c_number"
-                        type="text"
-                        className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
-                        placeholder=""
-                        autoFocus
-                        required
-                      />
-                    </div>
-                    <div className="w-full md:w-[48%]">
-                      <label className="text-black  text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
-                        Phone Number
-                      </label>
-                      <input
-                        id="c_number"
-                        type="text"
-                        className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
-                        placeholder=""
-                        autoFocus
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="mb-[24px]">
-                    <label className="text-black  text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
-                      Delivery address
-                    </label>
-                    <input
-                      id="c_number"
-                      type="text"
-                      className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
-                      placeholder=""
-                      autoFocus
-                      required
-                    />
-                  </div>{" "}
-                  <div className="flex items-center flex-col md:flex-row justify-between mb-[24px]">
-                    <div className="w-full md:w-[48%]">
-                      <label className="text-black text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
-                        Select State
-                      </label>
-                      <input
-                        id="c_number"
-                        type="text"
-                        className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
-                        placeholder=""
-                        autoFocus
-                        required
-                      />
-                    </div>
-                    <div className="w-full md:w-[48%]">
-                      <label className="text-black  text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
-                        Select LGA
-                      </label>
-                      <input
-                        id="c_number"
-                        type="text"
-                        className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
-                        placeholder=""
-                        autoFocus
-                        required
-                      />
-                    </div>
-                  </div>
+            {bizDetails && (
+              <div>
+                <div className="text-center mb-[28px] md:mb-[32px]">
+                  {" "}
+                  <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-[#29361C] font-medium">
+                    Delivery Details
+                  </h3>
                 </div>
+                <div className="px-5 min-w-[300px]">
+                  <form>
+                    <div>
+                      <div className="flex items-center flex-col md:flex-row justify-between mb-[24px]">
+                        <div className="w-full md:w-[48%]">
+                          <label className="text-black  text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
+                            First Name
+                          </label>
+                          <input
+                            id="c_number"
+                            type="text"
+                            className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
+                            placeholder=""
+                            autoFocus
+                            required
+                          />
+                        </div>
+                        <div className="w-full md:w-[48%]">
+                          <label className="text-black  text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
+                            Last Name
+                          </label>
+                          <input
+                            id="c_number"
+                            type="text"
+                            className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
+                            placeholder=""
+                            autoFocus
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="flex items-center flex-col md:flex-row justify-between mb-[24px]">
+                        <div className="w-full md:w-[48%]">
+                          <label className="text-black text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
+                            Email Adress
+                          </label>
+                          <input
+                            id="c_number"
+                            type="text"
+                            className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
+                            placeholder=""
+                            autoFocus
+                            required
+                          />
+                        </div>
+                        <div className="w-full md:w-[48%]">
+                          <label className="text-black  text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
+                            Phone Number
+                          </label>
+                          <input
+                            id="c_number"
+                            type="text"
+                            className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
+                            placeholder=""
+                            autoFocus
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="mb-[24px]">
+                        <label className="text-black  text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
+                          Delivery address
+                        </label>
+                        <input
+                          id="c_number"
+                          type="text"
+                          className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
+                          placeholder=""
+                          autoFocus
+                          required
+                        />
+                      </div>{" "}
+                      <div className="flex items-center flex-col md:flex-row justify-between mb-[24px]">
+                        <div className="w-full md:w-[48%]">
+                          <label className="text-black text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
+                            Select State
+                          </label>
+                          <input
+                            id="c_number"
+                            type="text"
+                            className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
+                            placeholder=""
+                            autoFocus
+                            required
+                          />
+                        </div>
+                        <div className="w-full md:w-[48%]">
+                          <label className="text-black  text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
+                            Select LGA
+                          </label>
+                          <input
+                            id="c_number"
+                            type="text"
+                            className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
+                            placeholder=""
+                            autoFocus
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
 
-                <div className="mb-[40px]">
-                  <label className="text-black  text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
-                    Delivery Note
-                  </label>
-                  <textarea
-                    id="c_number"
-                    type="text"
-                    className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
-                    placeholder=""
-                    autoFocus
-                    required
-                  />
+                    <div className="mb-[40px]">
+                      <label className="text-black  text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
+                        Delivery Note
+                      </label>
+                      <textarea
+                        id="c_number"
+                        type="text"
+                        className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
+                        placeholder=""
+                        autoFocus
+                        
+                      />
+                    </div>
+                    <button onClick={Handledelivery} type="submit" className="bg-[#CA5834] text-white rounded-[40px] text-center w-full py-[10px] mb-[32px]">
+                      Save and continue
+                    </button>
+                  </form>
                 </div>
-                <button className="bg-[#CA5834] text-white rounded-[40px] text-center w-full py-[10px] mb-[32px]"
-            >Save and continue</button>
-              </form>
-            </div>
+              </div>
+            )}
+            {summary && (
+              <div>
+                <div className="text-center mb-[28px] md:mb-[32px]">
+                  {" "}
+                  <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-[#29361C] font-medium">
+                    Delivery Details
+                  </h3>
+                </div>
+                <div className="px-5 min-w-[300px]">
+                  <div className="flex flex-col gap-3">
+                    <div className="flex items-center justify-between mb-1">
+                      <h3>First Name</h3>
+                      <p>Tosin</p>
+                    </div>
+                    <div className="flex items-center justify-between mb-1">
+                      <h3>Last Name</h3>
+                      <p>Tosin</p>
+                    </div>
+                    <div className="flex items-center justify-between mb-1">
+                      <h3>Email Address</h3>
+                      <p>TosinT@Gmail.com</p>
+                    </div>
+                    <div className="flex items-center justify-between mb-1">
+                      <h3>Phone Number</h3>
+                      <p>0812356498</p>
+                    </div>
+                    <div className="flex items-center justify-between mb-1">
+                      <h3>Address</h3>
+                      <p>2, Agege Motor Road, Olojo Road, Ojo, Lagos Nigeria</p>
+                    </div>
+                    <div className="flex items-center justify-between mb-1">
+                      <h3>LGA</h3>
+                      <p>Ojo</p>
+                    </div>
+
+                    <div className="text-center text-[#CA5834] ">
+                      <p>Change Delivery Details</p>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-3 mb-[40px] md:mb-[50px] ">
+                    {" "}
+                    <div className="flex items-center justify-between mb-1">
+                      <h3>SubTotal</h3>
+                      <p className="text-base lg:text-lg">N1,000.00</p>
+                    </div>
+                    <div className="flex items-center justify-between mb-1">
+                      <h3>Delivery Fee</h3>
+                      <p className="text-base lg:text-lg">N1,000.00</p>
+                    </div>
+                    <div className="flex items-center justify-between mb-1">
+                      <h3>Total Fee</h3>
+                      <p className="text-base lg:text-lg font-semibold">N1,000.00</p>
+                    </div>
+                  </div>
+                  <button className="bg-[#CA5834] text-white rounded-[40px] text-center w-full py-[10px] mb-[32px]">
+                    Continue to pay
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </Modal>
       </div>
