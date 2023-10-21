@@ -43,6 +43,11 @@ const Topbar = ({ setIsSidebar, userData }) => {
     setBizDetails(false);
     setSummary(true);
   };
+  const HandleChangeDescription = ( ) => {
+    setSummary(false);
+    setBizDetails(true);
+
+  }
 
   const HandleOptionOpen = () => {
     setIsDetailsModalOpen(false);
@@ -257,7 +262,7 @@ const Topbar = ({ setIsSidebar, userData }) => {
 
         {/* Create filter Modal */}
         <Modal isOpen={isDetailsModalOpen} onClose={HandleDetailsClose}>
-          <div className="inline-block overflow-hidden text-left relative align-bottom transition-all transform bg-[white] rounded-2xl shadow-xl sm:my-8 sm:align-middle min-w-[280px] sm:max-w-[360px] sm: md:max-w-[713px] md:w-full">
+          <div className="inline-block overflow-hidden text-left relative align-bottom transition-all transform bg-[white] rounded-2xl shadow-xl sm:my-8 sm:align-middle min-w-[280px] sm:max-w-[420px] sm:w-[420px] md:max-w-[713px] md:w-full">
             <div className="py-4 flex justify-end px-5 ">
               <svg
                 onClick={HandleDetailsClose}
@@ -291,17 +296,17 @@ const Topbar = ({ setIsSidebar, userData }) => {
               </svg>
             </div>{" "}
             {bizDetails && (
-              <div>
-                <div className="text-center mb-[28px] md:mb-[32px]">
+              <div className="min-w-[280px] sm:max-w-[420px] sm:w-[420px] md:max-w-[713px] md:w-full">
+                <div className="text-center mb-[28px] md:mb-[32px] w-full">
                   {" "}
                   <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-[#29361C] font-medium">
                     Delivery Details
                   </h3>
                 </div>
-                <div className="px-5 min-w-[300px]">
+                <div className="px-5  ">
                   <form>
                     <div>
-                      <div className="flex items-center flex-col md:flex-row justify-between mb-[24px]">
+                    <div className="flex items-center flex-col md:flex-row gap-[24px] justify-between mb-[24px]">
                         <div className="w-full md:w-[48%]">
                           <label className="text-black  text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
                             First Name
@@ -309,7 +314,7 @@ const Topbar = ({ setIsSidebar, userData }) => {
                           <input
                             id="c_number"
                             type="text"
-                            className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
+                            className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] sm:w-[420px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
                             placeholder=""
                             autoFocus
                             required
@@ -329,7 +334,7 @@ const Topbar = ({ setIsSidebar, userData }) => {
                           />
                         </div>
                       </div>
-                      <div className="flex items-center flex-col md:flex-row justify-between mb-[24px]">
+                      <div className="flex items-center flex-col md:flex-row gap-[24px] justify-between mb-[24px]">
                         <div className="w-full md:w-[48%]">
                           <label className="text-black text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
                             Email Adress
@@ -453,18 +458,19 @@ const Topbar = ({ setIsSidebar, userData }) => {
                     </div>
                     <div className="flex items-center justify-between  gap-2mb-1">
                       <h3 className="mr-2">Address</h3>
+                      <div className="max-w-[60%]">
                       <p className="text-[#29361C] font-medium text-left">
                         2, Agege Motor Road, Olojo Road, Ojo, Lagos Nigeria
-                      </p>
+                      </p></div>
                     </div>
                     <div className="flex items-center justify-between mb-1">
                       <h3>LGA</h3>
                       <p>Ojo</p>
                     </div>
 
-                    <div className="text-center text-[#CA5834] ">
+                    <button onClick={HandleChangeDescription} className="text-center text-[#CA5834] ">
                       <p>Change Delivery Details</p>
-                    </div>
+                    </button>
                   </div>
 
                   <div className="flex flex-col gap-3 mb-[40px] md:mb-[50px] ">
