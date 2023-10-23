@@ -44,7 +44,7 @@ const Sidebar = ({ isSidebarOpen, onClose }) => {
           </svg>
         </button>
       </div>
-      <div class="w-[280px] min-h-screen bg-[#FDFBE4] border-r border-r-[#E4E7EC] pt-[16px] pb-7 sticky top-0  ">
+      <div class="w-[220px] min-h-screen bg-[#FDFBE4] border-r border-r-[#E4E7EC] pt-[16px] pb-7 sticky top-0  ">
         <img
           className="ml-[24px] mb-[40px] h-[57px]  border-[#E2E8F0] "
           src="./logo.png"
@@ -53,7 +53,7 @@ const Sidebar = ({ isSidebarOpen, onClose }) => {
 
         <Link
           to="/menu"
-          className={`mx-[24px] pl-[17px] pr-[77px] rounded-[40px] py-[13px]  flex tracking-[0.2px] font-medium text-[14px] leading-[21px] items-end mb-[12px] ${
+          className={`mx-[24px] pl-[17px] pr-[45px] rounded-[40px] py-[13px]  flex tracking-[0.2px] font-medium text-[14px] leading-[21px] items-end mb-[12px] ${
             window.location.pathname === "/menu"
               ? "bg-[#CA5834] text-[white] rounded-[40px]"
               : "text-black"
@@ -80,7 +80,7 @@ const Sidebar = ({ isSidebarOpen, onClose }) => {
         </Link>
         <Link
           to="/track"
-          className={`mx-[24px] pl-[17px] pr-[77px] rounded-[40px] py-[13px]  flex tracking-[0.2px] font-medium text-[14px] leading-[21px] items-end mb-[12px] ${
+          className={`mx-[24px] pl-[17px] pr-[40px] rounded-[40px] py-[13px]  flex tracking-[0.2px] font-medium text-[14px] leading-[21px] items-end mb-[12px] ${
             window.location.pathname === "/track"
               ? "bg-[#CA5834] text-[white] rounded-[40px]"
               : "text-black"
@@ -92,12 +92,12 @@ const Sidebar = ({ isSidebarOpen, onClose }) => {
             size={24}
             className="mr-[12px]"
           />
-          Track Order
+        <p className="whitespace-nowrap">Track Order</p>  
         </Link>
 
         <Link
           to="/gallery"
-          className={`mx-[24px] pl-[17px] pr-[77px] rounded-[40px] py-[13px]  flex tracking-[0.2px] font-medium text-[14px] leading-[21px] items-end mb-[12px] ${
+          className={`mx-[24px] pl-[17px] pr-[40px] rounded-[40px] py-[13px]  flex tracking-[0.2px] font-medium text-[14px] leading-[21px] items-end mb-[12px] ${
             window.location.pathname === "/gallery"
               ? "bg-[#CA5834] text-[white] rounded-[40px]"
               : "text-black"
@@ -114,7 +114,7 @@ const Sidebar = ({ isSidebarOpen, onClose }) => {
         </Link>
         <Link
           to="/company"
-          className={`mx-[24px] pl-[17px] pr-[77px] rounded-[40px] py-[13px]  flex tracking-[0.2px] font-medium text-[14px] leading-[21px] items-end mb-[12px] ${
+          className={`mx-[24px] pl-[17px] pr-[40px] rounded-[40px] py-[13px]  flex tracking-[0.2px] font-medium text-[14px] leading-[21px] items-end mb-[12px] ${
             window.location.pathname === "/company"
               ? "bg-[#CA5834] text-[white] rounded-[40px]"
               : "text-black"
