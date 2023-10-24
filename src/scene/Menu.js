@@ -23,7 +23,7 @@ const Menu = () => {
     };
     //push item into redux
     dispatch(addToBasket(products));
-    HandleModalClose()
+    HandleModalClose();
   };
 
   const increase = () => {
@@ -80,10 +80,11 @@ const Menu = () => {
                 className="rounded-tr-lg rounded-tl-lg"
               />
               <div className="p-[16px] md:p-[16px] lg:p-[16px] bg-[#FFF] rounded-br-lg rounded-bl-lg">
-              <div className="mb-[24px] md:mb-[40px] lg:mb-[48px]">
+                <div className="mb-[24px] md:mb-[40px] lg:mb-[48px]">
                   <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-black mb-[8px] font-bold">
                     Pounded Yam
                   </h3>
+
                   <p className="text-[14px] md:text-[16px]">
                     Pounded yam with hot soup of Egusi with ogufe
                   </p>
@@ -132,11 +133,11 @@ const Menu = () => {
                 <div className="flex flex-col md:flex-row justify-between gap-2 md:items-center ">
                   <div className="w-[30%]">
                     <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
-                      N16,000
+                      N5,000
                     </h2>
                   </div>
                   <div className="w-[45%]">
-                  <button
+                    <button
                       onClick={HandleModalOpen}
                       className=" hidden md:flex py-[px] px-[8px] md:py-[5px] md:px-[12px] min-w-[110px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
                     >
@@ -168,17 +169,22 @@ const Menu = () => {
                     Pounded yam with hot soup of Egusi with ogufe
                   </p>
                 </div>
-
-                <div className="flex justify-between items-center ">
+                <div className="flex flex-col md:flex-row justify-between gap-2 md:items-center ">
                   <div className="w-[30%]">
                     <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
-                      N2,500
+                      N5,000
                     </h2>
                   </div>
                   <div className="w-[45%]">
                     <button
                       onClick={HandleModalOpen}
-                      className="whitespace-nowrap py-[px] px-[8px] md:py-[5px] md:px-[12px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
+                      className=" hidden md:flex py-[px] px-[8px] md:py-[5px] md:px-[12px] min-w-[110px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
+                    >
+                      Add to cart
+                    </button>
+                    <button
+                      onClick={HandleModalOpen}
+                      className=" md:hidden py-[px] px-[8px] md:py-[5px] md:px-[12px] min-w-[100px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
                     >
                       Add to cart
                     </button>
@@ -197,12 +203,13 @@ const Menu = () => {
                   <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-black mb-[8px] font-bold">
                     Pounded Yam
                   </h3>
+
                   <p className="text-[14px] md:text-[16px]">
                     Pounded yam with hot soup of Egusi with ogufe
                   </p>
                 </div>
 
-                <div className="flex justify-between items-center ">
+                <div className="flex flex-col md:flex-row justify-between gap-2 md:items-center ">
                   <div className="w-[30%]">
                     <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
                       N5,000
@@ -211,7 +218,13 @@ const Menu = () => {
                   <div className="w-[45%]">
                     <button
                       onClick={HandleModalOpen}
-                      className="whitespace-nowrap py-[px] px-[8px] md:py-[5px] md:px-[12px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
+                      className=" hidden md:flex py-[px] px-[8px] md:py-[5px] md:px-[12px] min-w-[110px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
+                    >
+                      Add to cart
+                    </button>
+                    <button
+                      onClick={HandleModalOpen}
+                      className=" md:hidden py-[px] px-[8px] md:py-[5px] md:px-[12px] min-w-[100px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
                     >
                       Add to cart
                     </button>
@@ -235,16 +248,22 @@ const Menu = () => {
                   </p>
                 </div>
 
-                <div className="flex justify-between items-center ">
+                <div className="flex flex-col md:flex-row justify-between gap-2 md:items-center ">
                   <div className="w-[30%]">
                     <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
-                      N16,000
+                      N5,000
                     </h2>
                   </div>
                   <div className="w-[45%]">
                     <button
                       onClick={HandleModalOpen}
-                      className="whitespace-nowrap py-[px] px-[8px] md:py-[5px] md:px-[12px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
+                      className=" hidden md:flex py-[px] px-[8px] md:py-[5px] md:px-[12px] min-w-[110px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
+                    >
+                      Add to cart
+                    </button>
+                    <button
+                      onClick={HandleModalOpen}
+                      className=" md:hidden py-[px] px-[8px] md:py-[5px] md:px-[12px] min-w-[100px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
                     >
                       Add to cart
                     </button>
@@ -268,16 +287,22 @@ const Menu = () => {
                   </p>
                 </div>
 
-                <div className="flex justify-between items-center ">
+                <div className="flex flex-col md:flex-row justify-between gap-2 md:items-center ">
                   <div className="w-[30%]">
                     <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
-                      N2,500
+                      N5,000
                     </h2>
                   </div>
                   <div className="w-[45%]">
                     <button
                       onClick={HandleModalOpen}
-                      className="whitespace-nowrap py-[px] px-[8px] md:py-[5px] md:px-[12px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
+                      className=" hidden md:flex py-[px] px-[8px] md:py-[5px] md:px-[12px] min-w-[110px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
+                    >
+                      Add to cart
+                    </button>
+                    <button
+                      onClick={HandleModalOpen}
+                      className=" md:hidden py-[px] px-[8px] md:py-[5px] md:px-[12px] min-w-[100px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
                     >
                       Add to cart
                     </button>
