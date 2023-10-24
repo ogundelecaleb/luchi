@@ -662,7 +662,7 @@ const Topbar = ({ setIsSidebar, userData }) => {
               </div>
               <div className="flex gap-2 w-full md:w-[80%] lg:w-[65%] mb-[48px] md:mb-[92px]">
                 <div>
-                  <input type="radio" className="p-[24px]" />
+                  <input type="radio" className="" />
                 </div>
 
                 <div>
