@@ -7,6 +7,7 @@ import { selectItems } from "../../slices/basketSlice";
 import Modal from "../../components/Modal";
 import ModalLeft from "../../components/ModalLeft";
 import { Trash } from "iconsax-react";
+import { SearchNormal } from "iconsax-react";
 
 const Topbar = ({ setIsSidebar, userData }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,11 +44,10 @@ const Topbar = ({ setIsSidebar, userData }) => {
     setBizDetails(false);
     setSummary(true);
   };
-  const HandleChangeDescription = ( ) => {
+  const HandleChangeDescription = () => {
     setSummary(false);
     setBizDetails(true);
-
-  }
+  };
 
   const HandleOptionOpen = () => {
     setIsDetailsModalOpen(false);
@@ -70,12 +70,25 @@ const Topbar = ({ setIsSidebar, userData }) => {
   };
 
   return (
-    <div className="flex border-b border-b-[#E4E7EC] w-full items-center justify-between px-6 gap-[16px] py-3">
+  <div className="border-b border-b-[#E4E7EC] w-full py-3 px-6">
+    <div className="flex  items-center justify-between  gap-[16px]  ">
       <div className="flex items-center">
-        <button
+        {/* <button
           class="h-12 w-12 bg-[#CA5834] relative px-3 py-3 rounded-full lg:hidden mr-2"
           onClick={setIsSidebar}
-        >
+        > */}
+
+        <img
+          className=" h-[57px]  border-[#E2E8F0] md:hidden "
+          src="./logo.png"
+          alt="logo"
+        />
+        <div className=" hidden md:flex px-3 py-1 rounded-[40px] cursor-pointer md:w-[400px] lg:w-[480px]  bg-white items-center">
+          <SearchNormal className="h-[16px] md:h-[16px]" color="#000" />
+          <input className="flex-1 focus:border-0 focus:outline-none border-0 " />{" "}
+        </div>
+
+        {/*           
           <svg
             width="24"
             height="24"
@@ -104,41 +117,8 @@ const Topbar = ({ setIsSidebar, userData }) => {
               stroke-linecap="round"
               stroke-linejoin="round"
             />
-          </svg>
-        </button>{" "}
-        <h4 className="text-[24px] text-[#1a202c] font-bold hidden md:block">
-          {location.pathname === "/dashboard"
-            ? "Dashboard"
-            : location.pathname === "/transaction"
-            ? "Transactions"
-            : location.pathname === "/settlement"
-            ? "Settlements"
-            : location.pathname === "/bank"
-            ? "Bank"
-            : location.pathname === "/channel"
-            ? "Channel"
-            : location.pathname === "/wallet"
-            ? "Wallet"
-            : location.pathname === "/country"
-            ? "Country"
-            : location.pathname === "/merchant"
-            ? "Merchant"
-            : location.pathname === "/name"
-            ? "Name"
-            : location.pathname === "/userAdmin"
-            ? "User Admin"
-            : location.pathname === "/isActive"
-            ? "IsActive"
-            : location.pathname === "/accountDetails"
-            ? "Account Details"
-            : location.pathname === "/currency"
-            ? "Currency"
-            : location.pathname === "/merchantChannel"
-            ? "Merchants Channel"
-            : location.pathname === "/configuration"
-            ? "Switch Configurations"
-            : ""}
-        </h4>{" "}
+          </svg> */}
+        {/* </button>{" "} */}
       </div>
       <div className="flex flex-row gap-3">
         <div onClick={HandleModalOpen} className="relative cursor-pointer">
@@ -194,75 +174,19 @@ const Topbar = ({ setIsSidebar, userData }) => {
               {items.length}
             </span>
           </div>
-
-          {/* <div
-            class="bg-[#FAFAFA] rounded-[1000px]  items-center lg:pl-[8px] lg:pr-[16px] pl-[6px] pr-[14px] py-2 flex cursor-pointer "
-            onClick={() => {
-              if (isModalOpen === false) {
-                setIsModalOpen(true);
-              } else {
-                setIsModalOpen(false);
-              }
-            }}
-          >
-            <div class="flex items-center lg:mr-[14px] mr-[12px]">
-              <svg
-                class="mr-[12px]"
-                width="32"
-                height="32"
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle cx="16" cy="16" r="16" fill="#C4C4C4" />
-              </svg>
-              <h4 class="text-[#1A202C] lg:text-[16px] lg:leading-[24px] text-[14px] leading-[21px] tracking-[0.2px] font-extrabold ">
-                {userData.fullName}
-              </h4>
-            </div>
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M4 6L8 10L12 6"
-                stroke="#718096"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </div> */}
-
-          {/* <img
-            src="./profile-pic.png"
-            alt="profile-pic"
-            className="h-[32px] rounded-full "
-          />
-          <h3>Emmanuel .O</h3>
-          <button
-            onClick={() => {
-              if (isOpen === false) {
-                setIsOpen(true);
-              } else {
-                setIsOpen(false);
-              }
-            }}
-          >
-            <img
-              src="./dropdown.png"
-              alt="dropdown icon"
-              className="h-[16px]"
-            />
-          </button> */}
         </div>
+
+        </div>
+        </div><div className=" md:hidden flex px-3 mt-3 py-1 rounded-[40px] cursor-pointer md:w-[400px] lg:w-[480px]  bg-white items-center">
+          <SearchNormal className="h-[16px] md:h-[16px]" color="#000" />
+          <input className="flex-1 focus:border-0 focus:outline-none border-0 "  placeholder="search for products"/>{" "}
+        </div>
+
+        
 
         {/* Create filter Modal */}
         <Modal isOpen={isDetailsModalOpen} onClose={HandleDetailsClose}>
-          <div className="inline-block overflow-hidden text-left relative align-bottom transition-all transform bg-[white] rounded-2xl shadow-xl sm:my-8 sm:align-middle min-w-[280px] sm:max-w-[420px] sm:w-[420px] md:max-w-[713px] md:w-full">
+          <div className="inline-block overflow-hidden text-left relative align-bottom transition-all transform bg-[white] rounded-2xl shadow-xl sm:my-8 sm:align-middle min-w-[380px] sm:max-w-[420px] sm:w-[420px] md:max-w-[713px] md:w-full ">
             <div className="py-4 flex justify-end px-5 ">
               <svg
                 onClick={HandleDetailsClose}
@@ -306,7 +230,7 @@ const Topbar = ({ setIsSidebar, userData }) => {
                 <div className="px-5  ">
                   <form>
                     <div>
-                    <div className="flex items-center flex-col md:flex-row gap-[24px] justify-between mb-[24px]">
+                      <div className="flex items-center flex-col md:flex-row gap-[24px] justify-between mb-[24px]">
                         <div className="w-full md:w-[48%]">
                           <label className="text-black  text-[10px] leading-[21px] tracking-[0.2px] font-bold mb-[7px]">
                             First Name
@@ -314,7 +238,7 @@ const Topbar = ({ setIsSidebar, userData }) => {
                           <input
                             id="c_number"
                             type="text"
-                            className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] sm:w-[420px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
+                            className="block w-full px-2 py-[5px] md:px-4 md:py-[9px]  placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
                             placeholder=""
                             autoFocus
                             required
@@ -459,16 +383,20 @@ const Topbar = ({ setIsSidebar, userData }) => {
                     <div className="flex items-center justify-between  gap-2mb-1">
                       <h3 className="mr-2">Address</h3>
                       <div className="max-w-[60%]">
-                      <p className="text-[#29361C] font-medium text-left">
-                        2, Agege Motor Road, Olojo Road, Ojo, Lagos Nigeria
-                      </p></div>
+                        <p className="text-[#29361C] font-medium text-left">
+                          2, Agege Motor Road, Olojo Road, Ojo, Lagos Nigeria
+                        </p>
+                      </div>
                     </div>
                     <div className="flex items-center justify-between mb-1">
                       <h3>LGA</h3>
                       <p>Ojo</p>
                     </div>
 
-                    <button onClick={HandleChangeDescription} className="text-center text-[#CA5834] ">
+                    <button
+                      onClick={HandleChangeDescription}
+                      className="text-center text-[#CA5834] "
+                    >
                       <p>Change Delivery Details</p>
                     </button>
                   </div>
@@ -505,6 +433,7 @@ const Topbar = ({ setIsSidebar, userData }) => {
           <div className="p-[24px] h-full">
             <div className="flex pb-2 border-b mb-3">
               <svg
+                className="cursor-pointer"
                 onClick={HandleModalClose}
                 width="24"
                 height="24"
@@ -604,6 +533,7 @@ const Topbar = ({ setIsSidebar, userData }) => {
           <div className="inline-block overflow-hidden text-left relative align-bottom transition-all transform bg-[white] rounded-2xl shadow-xl sm:my-8 sm:align-middle min-w-[280px] sm:max-w-[360px] sm: md:max-w-[713px] md:w-full">
             <div className="py-4 flex justify-end px-5 ">
               <svg
+                className="cursor-pointer"
                 onClick={HandleOptionClose}
                 width="24"
                 height="24"
@@ -691,6 +621,7 @@ const Topbar = ({ setIsSidebar, userData }) => {
           <div className="inline-block overflow-hidden text-left relative align-bottom transition-all transform bg-[white] rounded-2xl shadow-xl sm:my-8 sm:align-middle min-w-[280px] sm:max-w-[360px] sm: md:max-w-[713px] md:w-full">
             <div className="py-4 flex justify-end px-5 ">
               <svg
+                className="cursor-pointer"
                 onClick={HandlSuccessClose}
                 width="24"
                 height="24"
@@ -723,8 +654,8 @@ const Topbar = ({ setIsSidebar, userData }) => {
             </div>
             <div className="text-center mb-[28px] md:mb-[32px]">
               {" "}
-              <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-[#29361C] font-medium">
-                Success!!
+              <h3 className="text-clip    text-[18px] md:text-[20px] lg:text-[24px] text-[#29361C] font-medium">
+                Order Successful
               </h3>
             </div>
             <div className="px-5 flex flex-col justify-center ">
@@ -753,7 +684,7 @@ const Topbar = ({ setIsSidebar, userData }) => {
             </div>
           </div>
         </Modal>
-      </div>
+      
     </div>
   );
 };

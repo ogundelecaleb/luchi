@@ -63,10 +63,22 @@ const Menu = () => {
               All Meal
             </li>
             <li className="py-[8px] px-[10px] md:py-[12px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
-              Local Dishes
+              Soup
             </li>
-            <li className="py-[8px] px-[10px] md:py-[12px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
-              International Cousine
+            <li className="py-[8px] px-[10px] md:py-[10px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
+              Rice
+            </li>
+            <li className="py-[8px] px-[10px] md:py-[10px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
+              Breakfast
+            </li>
+            <li className="py-[8px] px-[10px] md:py-[10px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
+              Bread
+            </li>
+            <li className="py-[8px] px-[10px] md:py-[10px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
+              Pasta
+            </li>
+            <li className="py-[8px] px-[10px] md:py-[10px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
+              Snack
             </li>
           </ul>
         </div>
@@ -82,30 +94,24 @@ const Menu = () => {
               <div className="p-[16px] md:p-[16px] lg:p-[16px] bg-[#FFF] rounded-br-lg rounded-bl-lg">
                 <div className="mb-[24px] md:mb-[40px] lg:mb-[48px]">
                   <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-black mb-[8px] font-bold">
-                    Pounded Yam
+                    Bitterleaf Soup
                   </h3>
 
-                  <p className="text-[14px] md:text-[16px]">
-                    Pounded yam with hot soup of Egusi with ogufe
+                  <p className="text-[14px] md:text-[16px] text-[#29361C]">
+                    Soup
                   </p>
                 </div>
 
                 <div className="flex flex-col md:flex-row justify-between gap-2 md:items-center ">
                   <div className="w-[30%]">
-                    <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
+                    <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold">
                       N5,000
                     </h2>
                   </div>
                   <div className="w-[45%]">
                     <button
                       onClick={HandleModalOpen}
-                      className=" hidden md:flex py-[px] px-[8px] md:py-[5px] md:px-[12px] min-w-[110px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
-                    >
-                      Add to cart
-                    </button>
-                    <button
-                      onClick={HandleModalOpen}
-                      className=" md:hidden py-[px] px-[8px] md:py-[5px] md:px-[12px] min-w-[100px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
+                      className=" text-[14px] flex py-[px] px-[8px] md:py-[10px] md:px-[14px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
                     >
                       Add to cart
                     </button>
@@ -114,84 +120,6 @@ const Menu = () => {
               </div>
             </div>
 
-            <div className="flex flex-col w-full sm:max-w-[320px] md:max-w-[250px] rounded-lg">
-              <img
-                src="/jollof.png"
-                alt="egusi"
-                className="rounded-tr-lg rounded-tl-lg"
-              />
-              <div className="p-[16px] md:p-[16px] lg:p-[16px] bg-[#FFF] rounded-br-lg rounded-bl-lg">
-                <div className="mb-[24px] md:mb-[40px] lg:mb-[48px]">
-                  <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-black mb-[8px] font-bold">
-                    Pounded Yam
-                  </h3>
-                  <p className="text-[14px] md:text-[16px]">
-                    Pounded yam with hot soup of Egusi with ogufe
-                  </p>
-                </div>
-
-                <div className="flex flex-col md:flex-row justify-between gap-2 md:items-center ">
-                  <div className="w-[30%]">
-                    <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
-                      N5,000
-                    </h2>
-                  </div>
-                  <div className="w-[45%]">
-                    <button
-                      onClick={HandleModalOpen}
-                      className=" hidden md:flex py-[px] px-[8px] md:py-[5px] md:px-[12px] min-w-[110px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
-                    >
-                      Add to cart
-                    </button>
-                    <button
-                      onClick={HandleModalOpen}
-                      className=" md:hidden py-[px] px-[8px] md:py-[5px] md:px-[12px] min-w-[100px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
-                    >
-                      Add to cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-col w-full sm:max-w-[320px] md:max-w-[250px] rounded-lg">
-              <img
-                src="/sharwarma.png"
-                alt="egusi"
-                className="rounded-tr-lg rounded-tl-lg"
-              />
-              <div className="p-[16px] md:p-[16px] lg:p-[16px] bg-[#FFF] rounded-br-lg rounded-bl-lg">
-                <div className="mb-[32px] md:mb-[40px] lg:mb-[48px]">
-                  <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-black mb-[8px] font-bold">
-                    Pounded Yam
-                  </h3>
-                  <p className="text-[14px] md:text-[16px]">
-                    Pounded yam with hot soup of Egusi with ogufe
-                  </p>
-                </div>
-                <div className="flex flex-col md:flex-row justify-between gap-2 md:items-center ">
-                  <div className="w-[30%]">
-                    <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
-                      N5,000
-                    </h2>
-                  </div>
-                  <div className="w-[45%]">
-                    <button
-                      onClick={HandleModalOpen}
-                      className=" hidden md:flex py-[px] px-[8px] md:py-[5px] md:px-[12px] min-w-[110px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
-                    >
-                      Add to cart
-                    </button>
-                    <button
-                      onClick={HandleModalOpen}
-                      className=" md:hidden py-[px] px-[8px] md:py-[5px] md:px-[12px] min-w-[100px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
-                    >
-                      Add to cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
             <div className="flex flex-col w-full sm:max-w-[320px] md:max-w-[250px] rounded-lg">
               <img
                 src="/egusi.png"
@@ -199,32 +127,26 @@ const Menu = () => {
                 className="rounded-tr-lg rounded-tl-lg"
               />
               <div className="p-[16px] md:p-[16px] lg:p-[16px] bg-[#FFF] rounded-br-lg rounded-bl-lg">
-                <div className="mb-[32px] md:mb-[40px] lg:mb-[48px]">
+                <div className="mb-[24px] md:mb-[40px] lg:mb-[48px]">
                   <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-black mb-[8px] font-bold">
-                    Pounded Yam
+                    Bitterleaf Soup
                   </h3>
 
-                  <p className="text-[14px] md:text-[16px]">
-                    Pounded yam with hot soup of Egusi with ogufe
+                  <p className="text-[14px] md:text-[16px] text-[#29361C]">
+                    Soup
                   </p>
                 </div>
 
                 <div className="flex flex-col md:flex-row justify-between gap-2 md:items-center ">
                   <div className="w-[30%]">
-                    <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
+                    <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold">
                       N5,000
                     </h2>
                   </div>
                   <div className="w-[45%]">
                     <button
                       onClick={HandleModalOpen}
-                      className=" hidden md:flex py-[px] px-[8px] md:py-[5px] md:px-[12px] min-w-[110px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
-                    >
-                      Add to cart
-                    </button>
-                    <button
-                      onClick={HandleModalOpen}
-                      className=" md:hidden py-[px] px-[8px] md:py-[5px] md:px-[12px] min-w-[100px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
+                      className=" text-[14px] flex py-[px] px-[8px] md:py-[10px] md:px-[14px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
                     >
                       Add to cart
                     </button>
@@ -232,38 +154,34 @@ const Menu = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col w-full sm:max-w-[320px] md:max-w-[280px] rounded-lg">
+
+            <div className="flex flex-col w-full sm:max-w-[320px] md:max-w-[250px] rounded-lg">
               <img
-                src="/jollof.png"
+                src="/egusi.png"
                 alt="egusi"
                 className="rounded-tr-lg rounded-tl-lg"
               />
               <div className="p-[16px] md:p-[16px] lg:p-[16px] bg-[#FFF] rounded-br-lg rounded-bl-lg">
-                <div className="mb-[32px] md:mb-[40px] lg:mb-[48px]">
+                <div className="mb-[24px] md:mb-[40px] lg:mb-[48px]">
                   <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-black mb-[8px] font-bold">
-                    Pounded Yam
+                    Bitterleaf Soup
                   </h3>
-                  <p className="text-[14px] md:text-[16px]">
-                    Pounded yam with hot soup of Egusi with ogufe
+
+                  <p className="text-[14px] md:text-[16px] text-[#29361C]">
+                    Soup
                   </p>
                 </div>
 
                 <div className="flex flex-col md:flex-row justify-between gap-2 md:items-center ">
                   <div className="w-[30%]">
-                    <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
+                    <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold">
                       N5,000
                     </h2>
                   </div>
                   <div className="w-[45%]">
                     <button
                       onClick={HandleModalOpen}
-                      className=" hidden md:flex py-[px] px-[8px] md:py-[5px] md:px-[12px] min-w-[110px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
-                    >
-                      Add to cart
-                    </button>
-                    <button
-                      onClick={HandleModalOpen}
-                      className=" md:hidden py-[px] px-[8px] md:py-[5px] md:px-[12px] min-w-[100px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
+                      className=" text-[14px] flex py-[px] px-[8px] md:py-[10px] md:px-[14px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
                     >
                       Add to cart
                     </button>
@@ -271,6 +189,77 @@ const Menu = () => {
                 </div>
               </div>
             </div>
+
+            <div className="flex flex-col w-full sm:max-w-[320px] md:max-w-[250px] rounded-lg">
+              <img
+                src="/egusi.png"
+                alt="egusi"
+                className="rounded-tr-lg rounded-tl-lg"
+              />
+              <div className="p-[16px] md:p-[16px] lg:p-[16px] bg-[#FFF] rounded-br-lg rounded-bl-lg">
+                <div className="mb-[24px] md:mb-[40px] lg:mb-[48px]">
+                  <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-black mb-[8px] font-bold">
+                    Bitterleaf Soup
+                  </h3>
+
+                  <p className="text-[14px] md:text-[16px] text-[#29361C]">
+                    Soup
+                  </p>
+                </div>
+
+                <div className="flex flex-col md:flex-row justify-between gap-2 md:items-center ">
+                  <div className="w-[30%]">
+                    <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold">
+                      N5,000
+                    </h2>
+                  </div>
+                  <div className="w-[45%]">
+                    <button
+                      onClick={HandleModalOpen}
+                      className=" text-[14px] flex py-[px] px-[8px] md:py-[10px] md:px-[14px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
+                    >
+                      Add to cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col w-full sm:max-w-[320px] md:max-w-[250px] rounded-lg">
+              <img
+                src="/egusi.png"
+                alt="egusi"
+                className="rounded-tr-lg rounded-tl-lg"
+              />
+              <div className="p-[16px] md:p-[16px] lg:p-[16px] bg-[#FFF] rounded-br-lg rounded-bl-lg">
+                <div className="mb-[24px] md:mb-[40px] lg:mb-[48px]">
+                  <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-black mb-[8px] font-bold">
+                    Bitterleaf Soup
+                  </h3>
+
+                  <p className="text-[14px] md:text-[16px] text-[#29361C]">
+                    Soup
+                  </p>
+                </div>
+
+                <div className="flex flex-col md:flex-row justify-between gap-2 md:items-center ">
+                  <div className="w-[30%]">
+                    <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold">
+                      N5,000
+                    </h2>
+                  </div>
+                  <div className="w-[45%]">
+                    <button
+                      onClick={HandleModalOpen}
+                      className=" text-[14px] flex py-[px] px-[8px] md:py-[10px] md:px-[14px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
+                    >
+                      Add to cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="flex flex-col w-full sm:max-w-[320px] md:max-w-[280px] rounded-lg">
               <img
                 src="/sharwarma.png"
@@ -318,6 +307,7 @@ const Menu = () => {
         <div className="inline-block overflow-hidden text-left relative align-bottom transition-all transform bg-[white] rounded-2xl shadow-xl sm:my-8 sm:align-middle w-full sm:max-w-[713px] sm:w-full">
           <div className="py-4 flex justify-end px-5 border-b border-b-[#edf2f7]">
             <svg
+              className="cursor-pointer"
               onClick={HandleModalClose}
               width="24"
               height="24"
@@ -348,51 +338,204 @@ const Menu = () => {
               />
             </svg>
           </div>{" "}
-          <div className="px-5">
+          <div className="px-5 h-[80vh] overflow-y-auto">
             <img
               src="/egusi.png"
               alt="egusi"
               className="w-full h-[217px] rounded-lg mb-[24px]"
             />
-            <div>
-              <div className="flex justify-between items-center">
-                {" "}
+            <div className="">
+              <div className="flex justify-between border-b border-[#CA5834] border-dashed pb-[16px] md:pb-[20px] lg:pb-[24px] mb-[16px] md:mb-[20px] lg:mb-[24px]">
                 <div className="">
                   <h3 className="text-[18px] md:text-[24px] lg:text-[32px] text-black mb-[8px] font-bold">
-                    Pounded Yam
+                    Bitterleaf Soup
                   </h3>
+                  <p className="text-[14px] md:text-[16px]">(Soup) </p>
                 </div>
                 <h2 className="text-[18px] md:text-[20px] lg:text-[24px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
-                  {product.price}
+                  N {product.price}
                 </h2>
               </div>
-              <p className="text-[14px] md:text-[16px] mb-[24px] md:mb-[32px] xl:mb-[48px]">
-                Pounded yam with hot soup of Egusi with ogufe
-              </p>
+
               <div className="mb-[20px]">
                 <h3 className="text-[16px] lg:text-[18px] font-medium">
-                  How do you want it?
+                  Receipt:
                 </h3>
-                <div className="flex justify-between items-center">
-                  <div className="flex gap-2">
-                    <input type="checkbox" /> <p>With Turkey</p>
-                  </div>
-                  <div>
-                    <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                      N1,200.00
-                    </h3>
+                <div className=" flex justify-between items-center  border-b border-[#CA5834] border-dashed pb-[16px] md:pb-[20px] lg:pb-[24px] mb-[16px] md:mb-[20px] lg:mb-[24px]">
+               <p className="w-[70%] lg:[60%]">Cocoyam,Dry Fish,Stock Fish,Cray Fish,Meat, Oziza Seed,Palm Oil,Salt,Bitter Leaf,Ogiri</p> 
+                  {/* <ul className="list-disc pl-3 md:pl-4">
+                    <li className="text-[14px] md:text-[16px]">Cocoyam</li>
+                    <li className="text-[14px] md:text-[16px]">Dry Fish</li>
+                    <li className="text-[14px] md:text-[16px]">Stock Fish</li>
+                    <li className="text-[14px] md:text-[16px]">Cray Fish</li>
+                    <li className="text-[14px] md:text-[16px]">Meat</li>
+                    <li className="text-[14px] md:text-[16px]">
+                      Oziza Seed(grinded)
+                    </li>
+                    <li className="text-[14px] md:text-[16px]">Palm Oil</li>
+                    <li className="text-[14px] md:text-[16px]">Salt</li>
+                    <li className="text-[14px] md:text-[16px]">Bitter Leaf</li>
+                    <li className="text-[14px] md:text-[16px]">Ogiri</li>
+                  </ul> */}
+                </div>
+                <div>
+                  {" "}
+                  <h3 className="text-[16px] lg:text-[18px] font-medium">
+                    How do you want it?
+                  </h3>
+                  <p className="mb-[16px] lg:mb-[20px] font-medium">Protein</p>
+                  <div className="flex flex-col gap-2 mb-[28px]">
+                    <div className="flex justify-between items-center">
+                      <div className="flex gap-2">
+                        <input type="checkbox" /> <p>Cooked Titus</p>
+                      </div>
+                      <div>
+                        <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
+                          N1,500.00
+                        </h3>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <div className="flex gap-2">
+                        <input type="checkbox" /> <p>Spicy grill chicken</p>
+                      </div>
+                      <div>
+                        <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
+                          N1,500.00
+                        </h3>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <div className="flex gap-2">
+                        <input type="checkbox" /> <p>Peppered Snail</p>
+                      </div>
+                      <div>
+                        <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
+                          N1,500.00
+                        </h3>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <div className="flex gap-2">
+                        <input type="checkbox" /> <p>Assorted Stew</p>
+                      </div>
+                      <div>
+                        <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
+                          N1,500.00
+                        </h3>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <div className="flex gap-2">
+                        <input type="checkbox" /> <p>Goat Meat Stew</p>
+                      </div>
+                      <div>
+                        <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
+                          N1,500.00
+                        </h3>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <div className="flex gap-2">
+                        <input type="checkbox" />{" "}
+                        <p>Goat/Chicken/Assorted peppersoup</p>
+                      </div>
+                      <div>
+                        <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
+                          N1,500.00
+                        </h3>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <div className="flex gap-2">
+                        <input type="checkbox" /> <p>Asun</p>
+                      </div>
+                      <div>
+                        <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
+                          N1,500.00
+                        </h3>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="flex justify-between items-center">
-                  <div className="flex gap-2">
-                    <input type="checkbox" /> <p>With Cold Drink</p>
-                  </div>
-                  <div>
-                    <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                      N1,500.00
-                    </h3>
+                <div>
+                  {" "}
+                  <p className="mb-[16px] lg:mb-[20px] font-medium">Swallow</p>
+                  <div className="flex flex-col gap-2 mb-[28px]">
+                    <div className="flex justify-between items-center">
+                      <div className="flex gap-2">
+                        <input type="checkbox" /> <p>Starch</p>
+                      </div>
+                      <div>
+                        <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
+                          N1,500.00
+                        </h3>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <div className="flex gap-2">
+                        <input type="checkbox" /> <p>Eba</p>
+                      </div>
+                      <div>
+                        <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
+                          N1,500.00
+                        </h3>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <div className="flex gap-2">
+                        <input type="checkbox" /> <p>Fufu</p>
+                      </div>
+                      <div>
+                        <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
+                          N1,500.00
+                        </h3>
+                      </div>
+                    </div>
                   </div>
                 </div>
+                <div>
+                  {" "}
+                  <p className="mb-[16px] lg:mb-[20px] font-medium">Drink</p>
+                  <div className="flex flex-col gap-2">
+                    <div className="flex justify-between items-center">
+                      <div className="flex gap-2">
+                        <input type="checkbox" /> <p>Table water</p>
+                      </div>
+                      <div>
+                        <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
+                          N1,500.00
+                        </h3>
+                      </div>
+                    </div>
+
+                    <div className="flex justify-between items-center">
+                      <div className="flex gap-2">
+                        <input type="checkbox" /> <p>Cocacola</p>
+                      </div>
+                      <div>
+                        <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
+                          N1,500.00
+                        </h3>
+                      </div>
+                    </div>
+
+                    <div className="flex justify-between items-center">
+                      <div className="flex gap-2">
+                        <input type="checkbox" /> <p>Chivita Active</p>
+                      </div>
+                      <div>
+                        <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
+                          N1,500.00
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <label><span className="font-semibold ">Comment</span>(optional)</label>
+                <textarea className="border w-full rounded-lg" />
               </div>
               <div className="mt-[36px] md:mt-[48px] flex items-center justify-between  mb-[42px] md:mb-[56px] lg:mb-[72px] ">
                 <div>

@@ -1,7 +1,5 @@
 /* eslint-disable */
-
 import React from "react";
-
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { Routing, Gallery,Colorfilter } from "iconsax-react";
@@ -11,7 +9,7 @@ const Sidebar = ({ isSidebarOpen, onClose }) => {
 
   return (
     <div
-      className={` lg:block lg:relative ${
+      className={` md:block md:relative ${
         isSidebarOpen ? "block z-20 fixed inset-0 transition-opacity" : "hidden"
       }`}
     >
