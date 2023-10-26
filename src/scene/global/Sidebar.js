@@ -9,7 +9,7 @@ const Sidebar = ({ isSidebarOpen, onClose }) => {
 
   return (
     <div
-      className={` md:block md:relative ${
+      className={` md:block md:relative hidden ${
         isSidebarOpen ? "block z-20 fixed inset-0 transition-opacity" : "hidden"
       }`}
     >
