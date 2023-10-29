@@ -1,29 +1,75 @@
 import React, { useState } from "react";
+import { useOutletContext } from "react-router-dom";
 import Modal from "../components/Modal";
 import { useDispatch } from "react-redux";
 import { addToBasket } from "../slices/basketSlice";
+import { addToCart } from "../components/StateManagement";
+import { fetchCart } from "../components/StateManagement";
 
-const Menu = () => {
+const Menu = ({}) => {
   const dispatch = useDispatch();
+  const [selectedProduct, setSelectedProduct] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [total, setTotal] = useState("");
+  const [emptycart, setEmptycart] = useState(false);
+  const [cart, setCart] = useOutletContext()
+  
 
-  const product = {
-    id: "1",
-    title: "Pounded Yam",
-    price: 5000,
-    description: " Pounded yam with hot soup of Egusi with ogufe  ",
-  };
-  const [totalPrice, setTotalPrice] = useState(product.price);
+  // const addItemToBasket = () => {
+  //   const products = {
+  //     id: product.id,
+  //     title: product.title,
+  //     price: product.price,
+  //     description: product.description,
+  //   };
+  //   //push item into redux
+  //   dispatch(addToBasket(products));
+  //   HandleModalClose();
+  // };
 
-  const addItemToBasket = () => {
-    const products = {
-      id: product.id,
-      title: product.title,
-      price: product.price,
-      description: product.description,
-    };
-    //push item into redux
-    dispatch(addToBasket(products));
+
+    
+  const product = [
+    {
+      id: "1",
+      title: "Pounded Yam",
+      price: 5000,
+      description: " Pounded yam with hot soup of Egusi with ogufe  ",
+    },
+    {
+      id: "2",
+      title: "Eba",
+      price: 5000,
+      description: " Pounded yam with hot soup of Egusi with ogufe  ",
+    },
+    {
+      id: "3",
+      title: "Rice",
+      price: 4000,
+      description: " Pounded yam with hot soup of Egusi with ogufe  ",
+    },
+    {
+      id: "2",
+      title: "Yam",
+      price: 5000,
+      description: " Pounded yam with hot soup of Egusi with ogufe  ",
+    },
+    {
+      id: "2",
+      title: "Shawarma",
+      price: 5000,
+      description: " Pounded yam with hot soup of Egusi with ogufe  ",
+    },
+  ];
+
+const [totalPrice, setTotalPrice] = useState(product.price);
+  const HandleCart = () => {
+    // addToCart(product);
+    addToCart(selectedProduct);
     HandleModalClose();
+    const cart = localStorage.getItem("cart");
+setCart(JSON.parse(cart))
+    // addItemToBasket()
   };
 
   const increase = () => {
@@ -38,8 +84,10 @@ const Menu = () => {
   };
   const [isOpen, setIsOpen] = useState(false);
 
-  const HandleModalOpen = () => {
+  const HandleModalOpen = (p) => {
     setIsOpen(true);
+    // HandleCart(p)
+    setSelectedProduct(p);
   };
 
   const HandleModalClose = () => {
@@ -59,246 +107,67 @@ const Menu = () => {
         <img src="/banner.png" alt="banner" className="rounded-lg my-[24px] " />
         <div className="mb-[24px] md:mb-[32px]">
           <ul className="flex overflow-x-auto gap-[8px] md:gap-[12px] pb-3">
-            <li className="py-[8px] px-[10px] md:py-[12px] md:px-[18px] rounded-[24px] flex-shrink-0 bg-[#CA5834] text-white cursor-pointer">
+            <li className="py-[8px] px-[10px] md:py-[8px] md:px-[18px] rounded-[24px] flex-shrink-0 bg-[#CA5834] text-white cursor-pointer">
               All Meal
             </li>
-            <li className="py-[8px] px-[10px] md:py-[12px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
+            <li className="py-[8px] px-[10px] md:py-[8px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
               Soup
             </li>
-            <li className="py-[8px] px-[10px] md:py-[10px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
+            <li className="py-[8px] px-[10px] md:py-[8px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
               Rice
             </li>
-            <li className="py-[8px] px-[10px] md:py-[10px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
+            <li className="py-[8px] px-[10px] md:py-[8px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
               Breakfast
             </li>
-            <li className="py-[8px] px-[10px] md:py-[10px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
+            <li className="py-[8px] px-[10px] md:py-[8px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
               Bread
             </li>
-            <li className="py-[8px] px-[10px] md:py-[10px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
+            <li className="py-[8px] px-[10px] md:py-[8px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
               Pasta
             </li>
-            <li className="py-[8px] px-[10px] md:py-[10px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
+            <li className="py-[8px] px-[10px] md:py-[8px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
               Snack
             </li>
           </ul>
         </div>
-        <div className="flex justify-center">
+        <div className="">
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-[20px] ">
-            {/* <div className="flex flex-wrap gap-[20px] mx-auto"> */}
-            <div className="flex flex-col w-full sm:max-w-[320px] md:max-w-[250px] rounded-lg">
-              <img
-                src="/egusi.png"
-                alt="egusi"
-                className="rounded-tr-lg rounded-tl-lg"
-              />
-              <div className="p-[16px] md:p-[16px] lg:p-[16px] bg-[#FFF] rounded-br-lg rounded-bl-lg">
-                <div className="mb-[24px] md:mb-[40px] lg:mb-[48px]">
-                  <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-black mb-[8px] font-bold">
-                    Bitterleaf Soup
-                  </h3>
+            {product.map((prod) => (
+              <div className="flex flex-col w-full sm:max-w-[320px] md:max-w-[258px] rounded-lg">
+                <img
+                  src="/egusi.png"
+                  alt="egusi"
+                  className="rounded-tr-lg rounded-tl-lg"
+                />
+                <div className="p-[16px] md:p-[16px] lg:p-[16px] bg-[#FFF] rounded-br-lg rounded-bl-lg">
+                  <div className="mb-[24px] md:mb-[40px] lg:mb-[48px]">
+                    <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-black mb-[8px] font-bold">
+                      {prod.title}
+                    </h3>
 
-                  <p className="text-[14px] md:text-[16px] text-[#29361C]">
-                    Soup
-                  </p>
-                </div>
-
-                <div className="flex flex-col md:flex-row justify-between gap-2 md:items-center ">
-                  <div className="w-[30%]">
-                    <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold">
-                      N5,000
-                    </h2>
+                    <p className="text-[14px] md:text-[16px] text-[#29361C]">
+                      Soup
+                    </p>
                   </div>
-                  <div className="w-[45%]">
-                    <button
-                      onClick={HandleModalOpen}
-                      className=" text-[14px] flex py-[px] px-[8px] md:py-[10px] md:px-[14px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
-                    >
-                      Add to cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            <div className="flex flex-col w-full sm:max-w-[320px] md:max-w-[250px] rounded-lg">
-              <img
-                src="/egusi.png"
-                alt="egusi"
-                className="rounded-tr-lg rounded-tl-lg"
-              />
-              <div className="p-[16px] md:p-[16px] lg:p-[16px] bg-[#FFF] rounded-br-lg rounded-bl-lg">
-                <div className="mb-[24px] md:mb-[40px] lg:mb-[48px]">
-                  <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-black mb-[8px] font-bold">
-                    Bitterleaf Soup
-                  </h3>
-
-                  <p className="text-[14px] md:text-[16px] text-[#29361C]">
-                    Soup
-                  </p>
-                </div>
-
-                <div className="flex flex-col md:flex-row justify-between gap-2 md:items-center ">
-                  <div className="w-[30%]">
-                    <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold">
-                      N5,000
-                    </h2>
-                  </div>
-                  <div className="w-[45%]">
-                    <button
-                      onClick={HandleModalOpen}
-                      className=" text-[14px] flex py-[px] px-[8px] md:py-[10px] md:px-[14px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
-                    >
-                      Add to cart
-                    </button>
+                  <div className="flex flex-col md:flex-row justify-between gap-2 md:items-center ">
+                    <div className="w-[30%]">
+                      <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold">
+                        {prod.price}
+                      </h2>
+                    </div>
+                    <div className="w-[45%]">
+                      <button
+                        onClick={() => HandleModalOpen(prod)}
+                        className=" text-[14px] flex py-[px] px-[8px] md:py-[10px] md:px-[14px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
+                      >
+                        Add to cart
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div className="flex flex-col w-full sm:max-w-[320px] md:max-w-[250px] rounded-lg">
-              <img
-                src="/egusi.png"
-                alt="egusi"
-                className="rounded-tr-lg rounded-tl-lg"
-              />
-              <div className="p-[16px] md:p-[16px] lg:p-[16px] bg-[#FFF] rounded-br-lg rounded-bl-lg">
-                <div className="mb-[24px] md:mb-[40px] lg:mb-[48px]">
-                  <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-black mb-[8px] font-bold">
-                    Bitterleaf Soup
-                  </h3>
-
-                  <p className="text-[14px] md:text-[16px] text-[#29361C]">
-                    Soup
-                  </p>
-                </div>
-
-                <div className="flex flex-col md:flex-row justify-between gap-2 md:items-center ">
-                  <div className="w-[30%]">
-                    <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold">
-                      N5,000
-                    </h2>
-                  </div>
-                  <div className="w-[45%]">
-                    <button
-                      onClick={HandleModalOpen}
-                      className=" text-[14px] flex py-[px] px-[8px] md:py-[10px] md:px-[14px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
-                    >
-                      Add to cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-col w-full sm:max-w-[320px] md:max-w-[250px] rounded-lg">
-              <img
-                src="/egusi.png"
-                alt="egusi"
-                className="rounded-tr-lg rounded-tl-lg"
-              />
-              <div className="p-[16px] md:p-[16px] lg:p-[16px] bg-[#FFF] rounded-br-lg rounded-bl-lg">
-                <div className="mb-[24px] md:mb-[40px] lg:mb-[48px]">
-                  <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-black mb-[8px] font-bold">
-                    Bitterleaf Soup
-                  </h3>
-
-                  <p className="text-[14px] md:text-[16px] text-[#29361C]">
-                    Soup
-                  </p>
-                </div>
-
-                <div className="flex flex-col md:flex-row justify-between gap-2 md:items-center ">
-                  <div className="w-[30%]">
-                    <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold">
-                      N5,000
-                    </h2>
-                  </div>
-                  <div className="w-[45%]">
-                    <button
-                      onClick={HandleModalOpen}
-                      className=" text-[14px] flex py-[px] px-[8px] md:py-[10px] md:px-[14px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
-                    >
-                      Add to cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-col w-full sm:max-w-[320px] md:max-w-[250px] rounded-lg">
-              <img
-                src="/egusi.png"
-                alt="egusi"
-                className="rounded-tr-lg rounded-tl-lg"
-              />
-              <div className="p-[16px] md:p-[16px] lg:p-[16px] bg-[#FFF] rounded-br-lg rounded-bl-lg">
-                <div className="mb-[24px] md:mb-[40px] lg:mb-[48px]">
-                  <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-black mb-[8px] font-bold">
-                    Bitterleaf Soup
-                  </h3>
-
-                  <p className="text-[14px] md:text-[16px] text-[#29361C]">
-                    Soup
-                  </p>
-                </div>
-
-                <div className="flex flex-col md:flex-row justify-between gap-2 md:items-center ">
-                  <div className="w-[30%]">
-                    <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold">
-                      N5,000
-                    </h2>
-                  </div>
-                  <div className="w-[45%]">
-                    <button
-                      onClick={HandleModalOpen}
-                      className=" text-[14px] flex py-[px] px-[8px] md:py-[10px] md:px-[14px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
-                    >
-                      Add to cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-col w-full sm:max-w-[320px] md:max-w-[280px] rounded-lg">
-              <img
-                src="/sharwarma.png"
-                alt="egusi"
-                className="rounded-tr-lg rounded-tl-lg"
-              />
-              <div className="p-[16px] md:p-[16px] lg:p-[16px] bg-[#FFF] rounded-br-lg rounded-bl-lg">
-                <div className="mb-[32px] md:mb-[40px] lg:mb-[48px]">
-                  <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-black mb-[8px] font-bold">
-                    Pounded Yam
-                  </h3>
-                  <p className="text-[14px] md:text-[16px]">
-                    Pounded yam with hot soup of Egusi with ogufe
-                  </p>
-                </div>
-
-                <div className="flex flex-col md:flex-row justify-between gap-2 md:items-center ">
-                  <div className="w-[30%]">
-                    <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
-                      N5,000
-                    </h2>
-                  </div>
-                  <div className="w-[45%]">
-                    <button
-                      onClick={HandleModalOpen}
-                      className=" hidden md:flex py-[px] px-[8px] md:py-[5px] md:px-[12px] min-w-[110px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
-                    >
-                      Add to cart
-                    </button>
-                    <button
-                      onClick={HandleModalOpen}
-                      className=" md:hidden py-[px] px-[8px] md:py-[5px] md:px-[12px] min-w-[100px] flex-shrink-0 rounded-[24px] border border-[#CA5834] whitespace-nowrap text-[#CA5834] cursor-pointer hover:text-white hover:bg-[#CA5834]"
-                    >
-                      Add to cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
@@ -362,21 +231,11 @@ const Menu = () => {
                   Receipt:
                 </h3>
                 <div className=" flex justify-between items-center  border-b border-[#CA5834] border-dashed pb-[16px] md:pb-[20px] lg:pb-[24px] mb-[16px] md:mb-[20px] lg:mb-[24px]">
-               <p className="w-[70%] lg:[60%]">Cocoyam,Dry Fish,Stock Fish,Cray Fish,Meat, Oziza Seed,Palm Oil,Salt,Bitter Leaf,Ogiri</p> 
-                  {/* <ul className="list-disc pl-3 md:pl-4">
-                    <li className="text-[14px] md:text-[16px]">Cocoyam</li>
-                    <li className="text-[14px] md:text-[16px]">Dry Fish</li>
-                    <li className="text-[14px] md:text-[16px]">Stock Fish</li>
-                    <li className="text-[14px] md:text-[16px]">Cray Fish</li>
-                    <li className="text-[14px] md:text-[16px]">Meat</li>
-                    <li className="text-[14px] md:text-[16px]">
-                      Oziza Seed(grinded)
-                    </li>
-                    <li className="text-[14px] md:text-[16px]">Palm Oil</li>
-                    <li className="text-[14px] md:text-[16px]">Salt</li>
-                    <li className="text-[14px] md:text-[16px]">Bitter Leaf</li>
-                    <li className="text-[14px] md:text-[16px]">Ogiri</li>
-                  </ul> */}
+                  <p className="w-[70%] lg:[60%]">
+                    Cocoyam,Dry Fish,Stock Fish,Cray Fish,Meat, Oziza Seed,Palm
+                    Oil,Salt,Bitter Leaf,Ogiri
+                  </p>
+                  
                 </div>
                 <div>
                   {" "}
@@ -534,7 +393,9 @@ const Menu = () => {
                 </div>
               </div>
               <div>
-                <label><span className="font-semibold ">Comment</span>(optional)</label>
+                <label>
+                  <span className="font-semibold ">Comment</span>(optional)
+                </label>
                 <textarea className="border w-full rounded-lg" />
               </div>
               <div className="mt-[36px] md:mt-[48px] flex items-center justify-between  mb-[42px] md:mb-[56px] lg:mb-[72px] ">
@@ -545,12 +406,12 @@ const Menu = () => {
                 </div>
                 <div className="flex items-center gap-2 flex-col-reverse  md:flex-row">
                   <div
-                    onClick={addItemToBasket}
+                    onClick={HandleCart}
                     className="py-[8px] px-[10px] md:py-[12px] md:px-[18px] rounded-[24px] flex-shrink-0 bg-[#CA5834] text-white cursor-pointer"
                   >
                     Add to cart
                   </div>
-                  <button className="md:py-[2px] px-[16px]  md:px-[24px] lg:px-[30px] border border-[#CA5834] rounded-[24px] flex items-center">
+                  {/* <button className="md:py-[2px] px-[16px]  md:px-[24px] lg:px-[30px] border border-[#CA5834] rounded-[24px] flex items-center">
                     <p
                       onClick={decrease}
                       className="py-2 px-3 cursor-pointer hover:scale-150"
@@ -566,7 +427,7 @@ const Menu = () => {
                     >
                       +
                     </p>
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>

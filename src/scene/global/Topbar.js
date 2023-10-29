@@ -8,21 +8,179 @@ import Modal from "../../components/Modal";
 import ModalLeft from "../../components/ModalLeft";
 import { Trash } from "iconsax-react";
 import { SearchNormal } from "iconsax-react";
+// import { fetchCart } from "../../components/StateManagement";
+// import { removeProduct } from "../../components/StateManagement";
+import { totalCart } from "../../components/StateManagement";
+// import { increaseQuantity } from "../../components/StateManagement";
+import { decreaseQuantity } from "../../components/StateManagement";
 
-const Topbar = ({ setIsSidebar, userData }) => {
+const Topbar = ({ cart, setCart }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
   const [isPaymentOptionOpen, setIsPaymentOptionOpen] = useState(false);
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
   const [bizDetails, setBizDetails] = useState(true);
   const [summary, setSummary] = useState(false);
-  const [lga, setLga] = useState([]);
+  const [lga, setLga] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
   const items = useSelector(selectItems);
+  const [products, setProducts] = useState([]);
+  const [total, setTotal] = useState("");
+  const [emptycart, setEmptycart] = useState(false);
+  const [withdeliveryTotal, setWithdeliveryTotal] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [address, setAddress] = useState("");
+  const [comment, setComment] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    fetchCart();
+
+    const newtotal = total + 1200;
+    setWithdeliveryTotal(newtotal);
+  }, [total]);
+
+  function fetchCart() {
+    const cartData = localStorage.getItem("cart");
+    const cartTotal = localStorage.getItem("total");
+    
+
+    if (JSON.parse(cartData) == null) {
+      setProducts([]);
+    } else {
+      setProducts(JSON.parse(cartData));
+    }
+
+    setTotal(JSON.parse(cartTotal));
+    console.log(cartData);
+    console.log(products);
+setCart(JSON.parse(cartData));
+    if (JSON.parse(cartData).length === 0) {
+      setEmptycart(true);
+      console.log("empty");
+    } else {
+      setEmptycart(false);
+    }
+    // setPageLoading(false);
+  }
+
+  const removeProduct = async (product) => {
+    console.log("hello");
+    try {
+      let cartData = localStorage.getItem("cart");
+      if (cartData !== null) {
+        cartData = JSON.parse(cartData);
+        let newCart = cartData.filter((p) => p.id !== product);
+        const existingProduct = cartData.find((p) => p.id === product);
+        // const total = cartData.reduce((acc, curr) => acc - curr.price * curr.quantity, 0);
+        const oldTotal = localStorage.getItem("total");
+        const newTotal =
+          +oldTotal - +existingProduct.price * +existingProduct.quantity;
+
+        // Save the updated cart back to  localStorage
+        localStorage.setItem("cart", JSON.stringify(newCart));
+        localStorage.setItem("total", JSON.stringify(newTotal));
+        // showSuccess("Item removed 😃");
+
+        fetchCart();
+        let Array = localStorage.getItem("cart", JSON.stringify(cartArray));
+        setCart(Array);
+        // setCart(newCart);
+        //    localStorage.setItem('cart', JSON.stringify(newCart));
+        // calculateTotal();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  function increaseQuantity(productId) {
+    try {
+      // Get the current cart from  localStorage
+      const cart = localStorage.getItem("cart");
+
+      let cartArray = [];
+      // If the cart exists
+      if (cart) {
+        // Parse the cart from  localStorage into a JavaScript object
+        cartArray = JSON.parse(cart);
+        // Find the index of the product in the cart
+        const productIndex = cartArray.findIndex(
+          (product) => product.id === productId
+        );
+        // Check if the product is in the cart
+        // console.log(productIndex);
+        if (productIndex !== -1) {
+          // Increase the quantity of the product by 1
+          cartArray[productIndex].quantity++;
+          // Increase the total price by the product's price
+          // cartArray[productIndex].total = cartArray[productIndex].total + cartArray[productIndex].price;
+        }
+        const oldTotal = localStorage.getItem("total");
+        const newTotal = +oldTotal + +cartArray[productIndex].price;
+        // console.log(newTotal);
+        // return;
+        // Save the updated cart to  localStorage
+        //    localStorage.setItem('cart', JSON.stringify(cartArray));
+        localStorage.setItem("cart", JSON.stringify(cartArray));
+        localStorage.setItem("total", JSON.stringify(newTotal));
+        // showSuccess("Cart Updated 😃");
+        fetchCart();
+
+        // let itemArray = localStorage.getItem(["cart", "total"]);
+        // console.log(itemArray);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  function decreaseQuantity(productId) {
+    try {
+      // Get the current cart from  localStorage
+      const cart = localStorage.getItem("cart");
+  
+      let cartArray = [];
+      // If the cart exists
+      if (cart) {
+        // Parse the cart from  localStorage into a JavaScript object
+        cartArray = JSON.parse(cart);
+        console.log(cartArray);
+        // Find the index of the product in the cart
+        const productIndex = cartArray.findIndex(
+          (product) => product.id === productId
+        );
+        // Check if the product is in the cart
+        // console.log(productIndex);
+  
+        if (productIndex !== -1 && cartArray[productIndex].quantity > 1) {
+          // Increase the quantity of the product by 1
+          cartArray[productIndex].quantity--;
+  
+          const oldTotal = localStorage.getItem("total");
+  
+          const newTotal = +oldTotal - +cartArray[productIndex].price;
+  
+          localStorage.setItem("cart", JSON.stringify(cartArray));
+          localStorage.setItem("total", JSON.stringify(newTotal));
+        } else {
+          removeProduct(productId);
+        }
+        fetchCart();
+
+        // console.log(itemArray);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const HandleModalOpen = () => {
     setIsOpen(true);
+    fetchCart({ setProducts, setEmptycart, setTotal });
   };
 
   const HandleModalClose = () => {
@@ -70,19 +228,6 @@ const Topbar = ({ setIsSidebar, userData }) => {
     setIsSuccessOpen(false);
   };
 
-  const url = "https://api.facts.ng/v1/states/lagos";
-  const options = {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  };
-
-  useEffect(() => {
-    console.log(Lagos);
-  }, []);
-
   const Lagos = [
     "Agege",
     "Ajeromi-Ifelodun",
@@ -122,39 +267,12 @@ const Topbar = ({ setIsSidebar, userData }) => {
           />
           <div className=" hidden md:flex px-3 py-1 rounded-[40px] cursor-pointer md:w-[400px] lg:w-[480px]  bg-white items-center">
             <SearchNormal className="h-[16px] md:h-[16px]" color="#000" />
-            <input className="flex-1 focus:border-0 focus:outline-none border-0 " />{" "}
+            <input
+              placeholder="search for products"
+              className="flex-1 focus:border-0 focus:outline-none border-0 "
+            />{" "}
           </div>
 
-          {/*           
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M4 6H20"
-              stroke="#fff"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M4 12H20"
-              stroke="#fff"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M4 18H20"
-              stroke="#fff"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg> */}
           {/* </button>{" "} */}
         </div>
         <div className="flex flex-row gap-3">
@@ -208,7 +326,7 @@ const Topbar = ({ setIsSidebar, userData }) => {
                 />
               </svg>
               <span className="absolute top-1 right-0 md:left-7 h-4 w-4 bg-[#CA5834] text-white flex justify-center items-center text-center rounded-full  font-bold">
-                {items.length}
+                {cart.length}
               </span>
             </div>
           </div>
@@ -280,6 +398,8 @@ const Topbar = ({ setIsSidebar, userData }) => {
                           placeholder=""
                           autoFocus
                           required
+                          value={firstName}
+                          onChange={(e) => setFirstName(e.target.value)}
                         />
                       </div>
                       <div className="w-full md:w-[48%]">
@@ -293,6 +413,8 @@ const Topbar = ({ setIsSidebar, userData }) => {
                           placeholder=""
                           autoFocus
                           required
+                          value={lastName}
+                          onChange={(e) => setLastName(e.target.value)}
                         />
                       </div>
                     </div>
@@ -308,6 +430,8 @@ const Topbar = ({ setIsSidebar, userData }) => {
                           placeholder=""
                           autoFocus
                           required
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
                         />
                       </div>
                       <div className="w-full md:w-[48%]">
@@ -321,6 +445,8 @@ const Topbar = ({ setIsSidebar, userData }) => {
                           placeholder=""
                           autoFocus
                           required
+                          value={phoneNumber}
+                          onChange={(e) => setPhoneNumber(e.target.value)}
                         />
                       </div>
                     </div>
@@ -335,6 +461,8 @@ const Topbar = ({ setIsSidebar, userData }) => {
                         placeholder=""
                         autoFocus
                         required
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
                       />
                     </div>{" "}
                     <div className="flex items-center flex-col md:flex-row justify-between mb-[24px]">
@@ -362,8 +490,8 @@ const Topbar = ({ setIsSidebar, userData }) => {
                           className="block w-full px-2 py-[5px] md:px-4 md:py-[9px] placeholder:text-[#A0AEC0] placeholder:font-normal font-medium text-[#1A202C] text-[16px] leading-[24px] tracking-[0.3px] bg-white border border-[#E2E8F0]  rounded-md focus:outline-none focus:ring-[#124072] focus:border-[#124072] sm:text-sm"
                           autoFocus
                           required
-                          // value={defaultCurrency}
-                          // onChange={(e) => setDefualtCurrency(e.target.value)}
+                          value={lga}
+                          onChange={(e) => setLga(e.target.value)}
                         >
                           <option value="">Select LGA </option>
                           {Lagos.map((currency, index) => (
@@ -411,33 +539,31 @@ const Topbar = ({ setIsSidebar, userData }) => {
                 <div className="flex flex-col gap-3">
                   <div className="flex items-center justify-between mb-1">
                     <h3>First Name</h3>
-                    <p className="text-[#29361C] font-medium">Tosin</p>
+                    <p className="text-[#29361C] font-medium">{firstName}</p>
                   </div>
                   <div className="flex items-center justify-between mb-1">
                     <h3>Last Name</h3>
-                    <p className="text-[#29361C] font-medium">Tosin</p>
+                    <p className="text-[#29361C] font-medium">{lastName}</p>
                   </div>
                   <div className="flex items-center justify-between mb-1">
                     <h3>Email Address</h3>
-                    <p className="text-[#29361C] font-medium">
-                      TosinT@Gmail.com
-                    </p>
+                    <p className="text-[#29361C] font-medium">{email}</p>
                   </div>
                   <div className="flex items-center justify-between mb-1">
                     <h3>Phone Number</h3>
-                    <p className="text-[#29361C] font-medium">0812356498</p>
+                    <p className="text-[#29361C] font-medium">{phoneNumber}</p>
                   </div>
                   <div className="flex items-center justify-between  gap-2mb-1">
                     <h3 className="mr-2">Address</h3>
                     <div className="max-w-[60%]">
                       <p className="text-[#29361C] font-medium text-left">
-                        2, Agege Motor Road, Olojo Road, Ojo, Lagos Nigeria
+                        {address}
                       </p>
                     </div>
                   </div>
                   <div className="flex items-center justify-between mb-1">
                     <h3>LGA</h3>
-                    <p>Ojo</p>
+                    <p>{lga}</p>
                   </div>
 
                   <button
@@ -448,20 +574,20 @@ const Topbar = ({ setIsSidebar, userData }) => {
                   </button>
                 </div>
 
-                <div className="flex flex-col gap-3 mb-[40px] md:mb-[50px] ">
+                <div className="flex flex-col gap-3 mb-[80px] md:mb-[50px] ">
                   {" "}
                   <div className="flex items-center justify-between mb-1">
                     <h3>SubTotal</h3>
-                    <p className="text-base lg:text-lg">N1,000.00</p>
+                    <p className="text-base lg:text-lg">N{total}</p>
                   </div>
                   <div className="flex items-center justify-between mb-1">
                     <h3>Delivery Fee</h3>
-                    <p className="text-base lg:text-lg">N1,000.00</p>
+                    <p className="text-base lg:text-lg"> N1,200</p>
                   </div>
                   <div className="flex items-center justify-between mb-1">
                     <h3>Total Fee</h3>
                     <p className="text-base lg:text-lg font-semibold">
-                      N1,000.00
+                      N {withdeliveryTotal}
                     </p>
                   </div>
                 </div>
@@ -516,61 +642,93 @@ const Topbar = ({ setIsSidebar, userData }) => {
               </p>
             </div>
           </div>
-          <div className="flex flex-col  justify-between h-full">
-            <div className="flex ">
-              <img
-                src="/egusi.png"
-                alt=""
-                className="h-[50px] md:h-[78px] mr-[16px]"
-              />{" "}
-              <div className="flex justify-between flex-col">
-                <p>Pounded Yam</p>
-                <div className="flex items-center">
-                  <div className="h-4 w-4 flex justify-center items-center rounded-full border border-slate-300  cursor-pointer hover:scale-150">
-                    <p className="">-</p>
-                  </div>
-                  <p className="py-2 px-3 cursor-pointer text-[16] md:text-[18px] font-bold">
-                    1
-                  </p>
-                  <div className="h-4 w-4 flex justify-center items-center rounded-full border border-slate-300  cursor-pointer hover:scale-150">
-                    <p className="">+</p>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-1 flex-col justify-between">
-                <p className="self-end text-[#CA5834] font-bold">N16,000.00</p>
-                <div className="h-6 w-6 flex justify-center items-center rounded-full border border-slate-300 self-end ">
-                  <Trash size={18} />
-                </div>
-              </div>
-            </div>
 
-            {/* checkout Bottom section */}
-            <div>
-              <div className="flex flex-col gap-2 mb-3">
-                <div className="flex justify-between items-center">
-                  <p className="text-[#232323]">Menu Order</p>{" "}
-                  <button className="bg-[#EDFFDC] text-black rounded-[24px] text-[14px] py-[6px] px-[12px]">
-                    3 orders
-                  </button>
-                </div>
-                <div className="flex justify-between items-center">
-                  <p className="text-[#232323]">Delivery Fee</p>{" "}
-                  <p className="text-[#232323] font-bold"> N 1,200.00 </p>
-                </div>
-                <div className="flex justify-between items-center">
-                  <p className="text-[#232323]">SubTotal</p>{" "}
-                  <p className="text-[#232323] font-bold"> N 6,000.00 </p>
-                </div>
+          {!emptycart ? (
+            <div className="flex flex-col  justify-between h-full">
+              <div>
+                {products.map((product) => (
+                  <div key={product.id} className="flex mb-2 ">
+                    <img
+                      src="/egusi.png"
+                      alt=""
+                      className="h-[50px] md:h-[78px] mr-[16px]"
+                    />{" "}
+                    <div className="flex justify-between flex-col">
+                      <p>{product.title}</p>
+                      <div className="flex items-center">
+                        <div
+                          onClick={() => decreaseQuantity(product.id)}
+                          className="h-4 w-4 flex justify-center items-center rounded-full border border-slate-300  cursor-pointer hover:scale-150"
+                        >
+                          <p className="">-</p>
+                        </div>
+                        <p className="py-2 px-3 cursor-pointer text-[16] md:text-[18px] font-bold">
+                          {product.quantity}
+                        </p>
+                        <div
+                          onClick={() => increaseQuantity(product.id)}
+                          className="h-4 w-4 flex justify-center items-center rounded-full border border-slate-300  cursor-pointer hover:scale-150"
+                        >
+                          <p className="">+</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex flex-1 flex-col justify-between">
+                      <p className="self-end text-[#CA5834] font-bold">
+                        N{product.price}
+                      </p>
+                      <div
+                        onClick={() => removeProduct(product.id, setCart)}
+                        className="cursor-pointer h-6 w-6 flex justify-center items-center rounded-full border border-slate-300 self-end "
+                      >
+                        <Trash size={18} />
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <button
-                onClick={HandleCheckout}
-                className="bg-[#CA5834] text-white rounded-[40px] text-center w-full py-[10px] mb-[32px]"
-              >
-                Checkout
-              </button>
+
+              {/* checkout Bottom section */}
+              <div>
+                <div className="flex flex-col gap-2 mb-3">
+                  <div className="flex justify-between items-center">
+                    <p className="text-[#232323]">Menu Order</p>{" "}
+                    <button className="bg-[#EDFFDC] text-black rounded-[24px] text-[14px] py-[6px] px-[12px]">
+                      {products.length} orders
+                    </button>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <p className="text-[#232323]">Delivery Fee</p>{" "}
+                    <p className="text-[#232323] font-bold"> N 1,200.00 </p>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <p className="text-[#232323]">SubTotal</p>{" "}
+                    <p className="text-[#232323] font-bold">
+                      {" "}
+                      N {withdeliveryTotal}{" "}
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={HandleCheckout}
+                  className="bg-[#CA5834] text-white rounded-[40px] text-center w-full py-[10px] mb-[32px]"
+                >
+                  Checkout
+                </button>
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="'flex justify-center">
+              <p className="text-center text-[20px] py-5">
+                Your Cart is Empty!!
+              </p>
+              <img
+                src="/emptycart.png"
+                alt="empty cart"
+                className="mx-auto font-semibold h-[120px] mt-[80px]"
+              />
+            </div>
+          )}
         </div>
       </ModalLeft>
 
@@ -615,7 +773,7 @@ const Topbar = ({ setIsSidebar, userData }) => {
               Payment Methods
             </h3>
           </div>
-          <form className="px-5">
+          <form className="px-5 ">
             <div className="flex gap-2 w-full md:w-[80%] lg:w-[65%] mb-[36px] md:mb-[40px] lg:mb-[48px]">
               <div>
                 <input type="radio" className="align-top" />
@@ -653,7 +811,7 @@ const Topbar = ({ setIsSidebar, userData }) => {
             </div>
             <button
               type="button"
-              className="bg-[#CA5834] text-white rounded-[40px] text-center w-full py-[10px] mb-[32px]"
+              className="mt-[80px] bg-[#CA5834] text-white rounded-[40px] text-center w-full py-[10px] mb-[32px]"
               onClick={HandleSuccessOpen}
             >
               Make Payment
@@ -703,7 +861,7 @@ const Topbar = ({ setIsSidebar, userData }) => {
               Order Successful
             </h3>
           </div>
-          <div className="px-5 flex flex-col justify-center ">
+          <div className="px-5 flex flex-col justify-center mb-[80px]">
             <div className="max-w-[411px] mx-auto">
               <img
                 src="/success.png"
