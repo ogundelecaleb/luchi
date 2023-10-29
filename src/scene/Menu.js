@@ -222,7 +222,7 @@ setCart(JSON.parse(cart))
                   <p className="text-[14px] md:text-[16px]">(Soup) </p>
                 </div>
                 <h2 className="text-[18px] md:text-[20px] lg:text-[24px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
-                  N {product.price}
+                  N {selectedProduct.price}
                 </h2>
               </div>
 
