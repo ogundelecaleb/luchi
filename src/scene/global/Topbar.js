@@ -46,24 +46,24 @@ const Topbar = ({ cart, setCart }) => {
   function fetchCart() {
     const cartData = localStorage.getItem("cart");
     const cartTotal = localStorage.getItem("total");
-    
 
     if (JSON.parse(cartData) == null) {
       setProducts([]);
     } else {
+      setCart(JSON.parse(cartData));
       setProducts(JSON.parse(cartData));
+      if (JSON.parse(cartData).length === 0) {
+        setEmptycart(true);
+        console.log("empty");
+      } else {
+        setEmptycart(false);
+      }
     }
 
     setTotal(JSON.parse(cartTotal));
     console.log(cartData);
     console.log(products);
-setCart(JSON.parse(cartData));
-    if (JSON.parse(cartData).length === 0) {
-      setEmptycart(true);
-      console.log("empty");
-    } else {
-      setEmptycart(false);
-    }
+
     // setPageLoading(false);
   }
 
@@ -141,7 +141,7 @@ setCart(JSON.parse(cartData));
     try {
       // Get the current cart from  localStorage
       const cart = localStorage.getItem("cart");
-  
+
       let cartArray = [];
       // If the cart exists
       if (cart) {
@@ -154,15 +154,15 @@ setCart(JSON.parse(cartData));
         );
         // Check if the product is in the cart
         // console.log(productIndex);
-  
+
         if (productIndex !== -1 && cartArray[productIndex].quantity > 1) {
           // Increase the quantity of the product by 1
           cartArray[productIndex].quantity--;
-  
+
           const oldTotal = localStorage.getItem("total");
-  
+
           const newTotal = +oldTotal - +cartArray[productIndex].price;
-  
+
           localStorage.setItem("cart", JSON.stringify(cartArray));
           localStorage.setItem("total", JSON.stringify(newTotal));
         } else {
