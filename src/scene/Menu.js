@@ -221,7 +221,7 @@ setCart(JSON.parse(cart))
                   <p className="text-[14px] md:text-[16px]">(Soup) </p>
                 </div>
                 <h2 className="text-[18px] md:text-[20px] lg:text-[24px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
-                  N {selectedProduct.price}
+                ₦{selectedProduct.price}
                 </h2>
               </div>
 
@@ -249,7 +249,7 @@ setCart(JSON.parse(cart))
                       </div>
                       <div>
                         <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                          N1,500.00
+                        ₦1,500.00
                         </h3>
                       </div>
                     </div>
@@ -259,7 +259,7 @@ setCart(JSON.parse(cart))
                       </div>
                       <div>
                         <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                          N1,500.00
+                        ₦1,500.00
                         </h3>
                       </div>
                     </div>
@@ -269,7 +269,7 @@ setCart(JSON.parse(cart))
                       </div>
                       <div>
                         <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                          N1,500.00
+                        ₦1,500.00
                         </h3>
                       </div>
                     </div>
@@ -279,7 +279,7 @@ setCart(JSON.parse(cart))
                       </div>
                       <div>
                         <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                          N1,500.00
+                        ₦1,500.00
                         </h3>
                       </div>
                     </div>
@@ -289,7 +289,7 @@ setCart(JSON.parse(cart))
                       </div>
                       <div>
                         <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                          N1,500.00
+                        ₦1,500.00
                         </h3>
                       </div>
                     </div>
@@ -300,7 +300,7 @@ setCart(JSON.parse(cart))
                       </div>
                       <div>
                         <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                          N1,500.00
+                        ₦1,500.00
                         </h3>
                       </div>
                     </div>
@@ -310,7 +310,7 @@ setCart(JSON.parse(cart))
                       </div>
                       <div>
                         <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                          N1,500.00
+                        ₦1,500.00
                         </h3>
                       </div>
                     </div>
@@ -326,7 +326,7 @@ setCart(JSON.parse(cart))
                       </div>
                       <div>
                         <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                          N1,500.00
+                        ₦1,500.00
                         </h3>
                       </div>
                     </div>
@@ -336,7 +336,7 @@ setCart(JSON.parse(cart))
                       </div>
                       <div>
                         <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                          N1,500.00
+                        ₦1,500.00
                         </h3>
                       </div>
                     </div>
@@ -346,7 +346,7 @@ setCart(JSON.parse(cart))
                       </div>
                       <div>
                         <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                          N1,500.00
+                        ₦1,500.00
                         </h3>
                       </div>
                     </div>
@@ -362,7 +362,7 @@ setCart(JSON.parse(cart))
                       </div>
                       <div>
                         <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                          N1,500.00
+                        ₦1,500.00
                         </h3>
                       </div>
                     </div>
@@ -373,7 +373,7 @@ setCart(JSON.parse(cart))
                       </div>
                       <div>
                         <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                          N1,500.00
+                        ₦1,500.00
                         </h3>
                       </div>
                     </div>
@@ -384,7 +384,7 @@ setCart(JSON.parse(cart))
                       </div>
                       <div>
                         <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                          N1,500.00
+                        ₦1,500.00
                         </h3>
                       </div>
                     </div>
@@ -400,7 +400,7 @@ setCart(JSON.parse(cart))
               <div className="mt-[36px] md:mt-[48px] flex items-center justify-between  mb-[42px] md:mb-[56px] lg:mb-[72px] ">
                 <div>
                   <h3 className="text-[16px] lg:text-[18px] font-medium">
-                    Total Order: {totalPrice}
+                    Total Order: ₦{totalPrice}
                   </h3>
                 </div>
                 <div className="flex items-center gap-2 flex-col-reverse  md:flex-row">

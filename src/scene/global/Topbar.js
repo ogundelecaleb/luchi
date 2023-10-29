@@ -383,7 +383,7 @@ const Topbar = ({ cart, setCart }) => {
                 </h3>
               </div>
               <div className="px-5  ">
-                <form>
+                <form  onSubmit={Handledelivery}>
                   <div>
                     <div className="flex items-center flex-col md:flex-row gap-[24px] justify-between mb-[24px]">
                       <div className="w-full md:w-[48%]">
@@ -516,7 +516,7 @@ const Topbar = ({ cart, setCart }) => {
                     />
                   </div>
                   <button
-                    onClick={Handledelivery}
+                   
                     type="submit"
                     className="bg-[#CA5834] text-white rounded-[40px] text-center w-full py-[10px] mb-[32px]"
                   >
@@ -577,16 +577,16 @@ const Topbar = ({ cart, setCart }) => {
                   {" "}
                   <div className="flex items-center justify-between mb-1">
                     <h3>SubTotal</h3>
-                    <p className="text-base lg:text-lg">N{total}</p>
+                    <p className="text-base lg:text-lg">₦{total}</p>
                   </div>
                   <div className="flex items-center justify-between mb-1">
                     <h3>Delivery Fee</h3>
-                    <p className="text-base lg:text-lg"> N1,200</p>
+                    <p className="text-base lg:text-lg"> ₦1,200</p>
                   </div>
                   <div className="flex items-center justify-between mb-1">
                     <h3>Total Fee</h3>
                     <p className="text-base lg:text-lg font-semibold">
-                      N {withdeliveryTotal}
+                    ₦{withdeliveryTotal}
                     </p>
                   </div>
                 </div>
@@ -674,7 +674,7 @@ const Topbar = ({ cart, setCart }) => {
                     </div>
                     <div className="flex flex-1 flex-col justify-between">
                       <p className="self-end text-[#CA5834] font-bold">
-                        N{product.price}
+                      ₦{product.price}
                       </p>
                       <div
                         onClick={() => removeProduct(product.id, setCart)}
@@ -698,13 +698,13 @@ const Topbar = ({ cart, setCart }) => {
                   </div>
                   <div className="flex justify-between items-center">
                     <p className="text-[#232323]">Delivery Fee</p>{" "}
-                    <p className="text-[#232323] font-bold"> N 1,200.00 </p>
+                    <p className="text-[#232323] font-bold"> ₦ 1,200.00 </p>
                   </div>
                   <div className="flex justify-between items-center">
                     <p className="text-[#232323]">SubTotal</p>{" "}
                     <p className="text-[#232323] font-bold">
                       {" "}
-                      N {withdeliveryTotal}{" "}
+                      ₦ {withdeliveryTotal}{" "}
                     </p>
                   </div>
                 </div>
