@@ -39,7 +39,7 @@ const Menu = ({}) => {
     {
       id: "2",
       title: "Eba",
-      price: 5000,
+      price: 2000,
       description: " Pounded yam with hot soup of Egusi with ogufe  ",
     },
     {
@@ -51,13 +51,13 @@ const Menu = ({}) => {
     {
       id: "2",
       title: "Yam",
-      price: 5000,
+      price: 1500,
       description: " Pounded yam with hot soup of Egusi with ogufe  ",
     },
     {
       id: "2",
       title: "Shawarma",
-      price: 5000,
+      price: 3000,
       description: " Pounded yam with hot soup of Egusi with ogufe  ",
     },
   ];
