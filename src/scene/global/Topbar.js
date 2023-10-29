@@ -137,7 +137,6 @@ setCart(JSON.parse(cartData));
       console.log(error);
     }
   }
-
   function decreaseQuantity(productId) {
     try {
       // Get the current cart from  localStorage
