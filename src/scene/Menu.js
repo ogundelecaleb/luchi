@@ -217,8 +217,7 @@ setCart(JSON.parse(cart))
               <div className="flex justify-between border-b border-[#CA5834] border-dashed pb-[16px] md:pb-[20px] lg:pb-[24px] mb-[16px] md:mb-[20px] lg:mb-[24px]">
                 <div className="">
                   <h3 className="text-[18px] md:text-[24px] lg:text-[32px] text-black mb-[8px] font-bold">
-                    Bitterleaf Soup
-                  </h3>
+                  {selectedProduct.title}                  </h3>
                   <p className="text-[14px] md:text-[16px]">(Soup) </p>
                 </div>
                 <h2 className="text-[18px] md:text-[20px] lg:text-[24px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
