@@ -107,25 +107,25 @@ setCart(JSON.parse(cart))
         <img src="/banner.png" alt="banner" className="rounded-lg my-[24px] " />
         <div className="mb-[24px] md:mb-[32px]">
           <ul className="flex overflow-x-auto gap-[8px] md:gap-[12px] pb-3">
-            <li className="py-[8px] px-[10px] md:py-[8px] md:px-[18px] rounded-[24px] flex-shrink-0 bg-[#CA5834] text-white cursor-pointer">
+            <li className="py-[4px] px-[18px] md:py-[8px] md:px-[18px] rounded-[24px] flex-shrink-0 bg-[#CA5834] text-white cursor-pointer">
               All Meal
             </li>
-            <li className="py-[8px] px-[10px] md:py-[8px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
+            <li className="py-[4px] px-[18px] md:py-[8px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
               Soup
             </li>
-            <li className="py-[8px] px-[10px] md:py-[8px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
+            <li className="py-[4px] px-[18px] md:py-[8px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
               Rice
             </li>
-            <li className="py-[8px] px-[10px] md:py-[8px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
+            <li className="py-[4px] px-[18px] md:py-[8px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
               Breakfast
             </li>
-            <li className="py-[8px] px-[10px] md:py-[8px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
+            <li className="py-[4px] px-[18px] md:py-[8px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
               Bread
             </li>
-            <li className="py-[8px] px-[10px] md:py-[8px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
+            <li className="py-[4px] px-[18px] md:py-[8px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
               Pasta
             </li>
-            <li className="py-[8px] px-[10px] md:py-[8px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
+            <li className="py-[4px] px-[18px] md:py-[8px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
               Snack
             </li>
           </ul>
@@ -153,7 +153,7 @@ setCart(JSON.parse(cart))
                   <div className="flex flex-col md:flex-row justify-between gap-2 md:items-center ">
                     <div className="w-[30%]">
                       <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold">
-                        {prod.price}
+                      ₦{prod.price}
                       </h2>
                     </div>
                     <div className="w-[45%]">
