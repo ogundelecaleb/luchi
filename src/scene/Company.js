@@ -29,7 +29,7 @@ const Company = () => {
           </div>
           <div className="flex gap-2 ">
             <div className="flex gap-1">
-              <Call size={24} /> <p>+234 8146789042, +234 7234567890 </p>
+              <Call size={24} /> <p>+234 9160001766, +234 9130222333 </p>
             </div>
             <div className="flex gap-1"><Sms size={24} /><a href="mailto:luchis@gmail.com">luchi@gmail.com</a></div>
           </div>

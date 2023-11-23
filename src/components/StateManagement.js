@@ -1,3 +1,4 @@
+import { enqueueSnackbar } from "notistack";
 import React from "react";
 const totalCart = () => {
   const cartData = localStorage.getItem("cart");
@@ -69,7 +70,7 @@ function addToCart(product) {
     localStorage.setItem("cart", JSON.stringify(cartArray));
     localStorage.setItem("total", JSON.stringify(total));
     //  localStorage.multiSet([['cart', JSON.stringify(cartArray)], ['total', JSON.stringify(total)]]);
-    // showSuccess('Item Added Successfully to cart 😃');
+    enqueueSnackbar('Item Added Successfully to cart 😃', { variant: 'success' });
     let itemArray = localStorage.getItem("cart");
     console.log(itemArray);
   } catch (error) {
@@ -182,6 +183,11 @@ const removeProduct = async (product, setCart) => {
   }
 };
 
+function clearCart() {
+  localStorage.removeItem('cart');
+  localStorage.removeItem('total');
+}
+
 export {
   removeProduct,
   decreaseQuantity,
@@ -189,4 +195,5 @@ export {
   addToCart,
   fetchCart,
   totalCart,
+  clearCart
 };

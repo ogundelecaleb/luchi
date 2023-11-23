@@ -5,15 +5,22 @@ import { useDispatch } from "react-redux";
 import { addToBasket } from "../slices/basketSlice";
 import { addToCart } from "../components/StateManagement";
 import { fetchCart } from "../components/StateManagement";
+import api from "../api";
+import { useQuery } from "@tanstack/react-query";
+import { NumericFormat } from "react-number-format";
+import { SearchNormal } from "iconsax-react";
+import ProductList from "../components/ProductsByCategoriesList";
 
-const Menu = ({}) => {
+const Menu = ({ }) => {
   const dispatch = useDispatch();
   const [selectedProduct, setSelectedProduct] = useState([]);
   const [products, setProducts] = useState([]);
   const [total, setTotal] = useState("");
   const [emptycart, setEmptycart] = useState(false);
   const [cart, setCart] = useOutletContext()
-  
+  const [page, setPage] = useState(1);
+  const [category, setCategory] = useState("");
+  const [name, setName] = useState("");
 
   // const addItemToBasket = () => {
   //   const products = {
@@ -28,60 +35,56 @@ const Menu = ({}) => {
   // };
 
 
-    
-  const product = [
-    {
-      id: "1",
-      title: "Pounded Yam",
-      price: 5000,
-      description: " Pounded yam with hot soup of Egusi with ogufe  ",
-    },
-    {
-      id: "2",
-      title: "Eba",
-      price: 2000,
-      description: " Pounded yam with hot soup of Egusi with ogufe  ",
-    },
-    {
-      id: "3",
-      title: "Rice",
-      price: 4000,
-      description: " Pounded yam with hot soup of Egusi with ogufe  ",
-    },
-    {
-      id: "2",
-      title: "Yam",
-      price: 1500,
-      description: " Pounded yam with hot soup of Egusi with ogufe  ",
-    },
-    {
-      id: "2",
-      title: "Shawarma",
-      price: 3000,
-      description: " Pounded yam with hot soup of Egusi with ogufe  ",
-    },
-  ];
 
-const [totalPrice, setTotalPrice] = useState(product.price);
+
+  async function getProducts(page, category, name) {
+    const response = await api.getProducts({ params: { page, category, name } });
+    // console.log('products==>>', response);
+    return response;
+  }
+
+  const productsQuery = useQuery(['products', page, category, name], () =>
+    getProducts(page, category, name),
+    {
+      keepPreviousData: true, refetchOnWindowFocus: "always",
+    }
+
+  );
+
+  async function getCategories() {
+    const response = await api.getCategories();
+    // console.log('categories==>>', response.data);
+    return response.data;
+  }
+
+  const categoriesQuery = useQuery(['categories'], () =>
+    getCategories(),
+    {
+      keepPreviousData: true, refetchOnWindowFocus: "always",
+    }
+
+  );
+
+  // const [totalPrice, setTotalPrice] = useState(product.price);
   const HandleCart = () => {
     // addToCart(product);
     addToCart(selectedProduct);
     HandleModalClose();
     const cart = localStorage.getItem("cart");
-setCart(JSON.parse(cart))
+    setCart(JSON.parse(cart))
     // addItemToBasket()
   };
 
-  const increase = () => {
-    const newTotal = totalPrice + product.price;
-    setTotalPrice(newTotal);
-  };
-  const decrease = () => {
-    if (totalPrice && totalPrice > 0) {
-      const newTotal = totalPrice - product.price;
-      setTotalPrice(newTotal);
-    }
-  };
+  // const increase = () => {
+  //   const newTotal = totalPrice + product.price;
+  //   setTotalPrice(newTotal);
+  // };
+  // const decrease = () => {
+  //   if (totalPrice && totalPrice > 0) {
+  //     const newTotal = totalPrice - product.price;
+  //     setTotalPrice(newTotal);
+  //   }
+  // };
   const [isOpen, setIsOpen] = useState(false);
 
   const HandleModalOpen = (p) => {
@@ -93,6 +96,9 @@ setCart(JSON.parse(cart))
   const HandleModalClose = () => {
     setIsOpen(false);
   };
+
+
+
   return (
     <div>
       <div className="px-[16px] md:px-[24px] lg:px-[32px] py-[32px]">
@@ -105,56 +111,78 @@ setCart(JSON.parse(cart))
           </h3>
         </div>
         <img src="/banner.png" alt="banner" className="rounded-lg my-[24px] " />
+        <div className=" hidden md:flex px-3 py-1 rounded-[40px] cursor-pointer md:w-[400px] lg:w-[480px]  bg-white items-center mb-7">
+          <SearchNormal className="h-[16px] md:h-[16px]" color="#000" />
+          <input
+            placeholder="search for products"
+            className="flex-1 focus:border-0 focus:outline-none border-0 "
+            onChange={(e) => setName(e.target.value)}
+          />{" "}
+        </div>
         <div className="mb-[24px] md:mb-[32px]">
-          <ul className="flex overflow-x-auto gap-[8px] md:gap-[12px] pb-3">
-            <li className="py-[4px] px-[18px] md:py-[8px] md:px-[18px] rounded-[24px] flex-shrink-0 bg-[#CA5834] text-white cursor-pointer">
-              All Meal
+          {categoriesQuery.isLoading ? (
+            <h1>loading</h1>
+          ) : (<ul className="flex overflow-x-auto gap-[8px] md:gap-[12px] pb-3">
+            <li
+              onClick={() => setCategory('')}
+              className={`py-[4px] px-[18px] md:py-[8px] md:px-[18px] rounded-[24px] flex-shrink-0 ${category === ""
+                ? "bg-[#CA5834] text-white"
+                : "border border-[#CA5834] text-[#CA5834]"
+                }  cursor-pointer`}>
+              All
             </li>
-            <li className="py-[4px] px-[18px] md:py-[8px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
-              Soup
-            </li>
-            <li className="py-[4px] px-[18px] md:py-[8px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
-              Rice
-            </li>
-            <li className="py-[4px] px-[18px] md:py-[8px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
-              Breakfast
-            </li>
-            <li className="py-[4px] px-[18px] md:py-[8px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
-              Bread
-            </li>
-            <li className="py-[4px] px-[18px] md:py-[8px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
-              Pasta
-            </li>
-            <li className="py-[4px] px-[18px] md:py-[8px] md:px-[18px] flex-shrink-0 rounded-[24px] border border-[#CA5834] text-[#CA5834] cursor-pointer">
-              Snack
-            </li>
-          </ul>
+            {categoriesQuery?.data?.map((cat) => (
+              <li
+                onClick={() => setCategory(cat.id)}
+                key={cat.id}
+                className={`py-[4px] px-[18px] md:py-[8px] md:px-[18px] rounded-[24px] flex-shrink-0 ${category === cat.id
+                  ? "bg-[#CA5834] text-white"
+                  : "border border-[#CA5834] text-[#CA5834]"
+                  }  cursor-pointer`}>
+                {cat.name}
+              </li>))}
+
+          </ul>)}
         </div>
         <div className="">
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-[20px] ">
-            {product.map((prod) => (
-              <div className="flex flex-col w-full sm:max-w-[320px] md:max-w-[258px] rounded-lg">
+
+          {productsQuery.isLoading ? (
+            <h1>loading</h1>
+          ) : (<div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-[20px] mb-[50px] ">
+            {productsQuery?.data?.data?.map((prod) => (
+              <div key={prod.id} className="flex flex-col w-full sm:max-w-[320px] md:max-w-[258px] rounded-lg">
                 <img
-                  src="/egusi.png"
-                  alt="egusi"
-                  className="rounded-tr-lg rounded-tl-lg"
+                  src={prod?.images[Object.keys(prod.images)[0]]?.original_url}
+                  alt="product"
+                  className="rounded-tl-lg rounded-tr-lg"
                 />
                 <div className="p-[16px] md:p-[16px] lg:p-[16px] bg-[#FFF] rounded-br-lg rounded-bl-lg">
                   <div className="mb-[24px] md:mb-[40px] lg:mb-[48px]">
                     <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-black mb-[8px] font-bold">
-                      {prod.title}
+                      {prod.name}
                     </h3>
 
-                    <p className="text-[14px] md:text-[16px] text-[#29361C]">
-                      Soup
-                    </p>
+                    {prod?.categories?.map((category) => (<p className="text-[14px] md:text-[16px] text-[#29361C]">
+                      {category.name}
+                    </p>))}
                   </div>
 
-                  <div className="flex flex-col md:flex-row justify-between gap-2 md:items-center ">
+                  <div className="flex flex-col justify-between gap-2 md:flex-row md:items-center ">
                     <div className="w-[30%]">
-                      <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold">
-                      ₦{prod.price}
-                      </h2>
+                      <NumericFormat
+                        value={prod.price}
+                        displayType={'text'}
+                        thousandSeparator={true}
+                        prefix={'₦'}
+                        decimalScale={0}
+                        fixedDecimalScale={true}
+                        renderText={value => <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold">
+                          {value}
+                        </h2>}
+                      />
+                      {/* <h2 className="text-[18px] md:text-[18px] lg:text-[20px] text-[#CA5834] font-bold">
+                        ₦{prod.price}
+                      </h2> */}
                     </div>
                     <div className="w-[45%]">
                       <button
@@ -168,7 +196,7 @@ setCart(JSON.parse(cart))
                 </div>
               </div>
             ))}
-          </div>
+          </div>)}
         </div>
       </div>
       {/* More Details on Merchant Channel */}
@@ -209,7 +237,7 @@ setCart(JSON.parse(cart))
           </div>{" "}
           <div className="px-5 h-[80vh] overflow-y-auto">
             <img
-              src="/egusi.png"
+              src={(selectedProduct.images && typeof selectedProduct.images === 'object') && selectedProduct?.images[Object.keys(selectedProduct?.images)[0]]?.original_url}
               alt="egusi"
               className="w-full h-[217px] rounded-lg mb-[24px]"
             />
@@ -217,15 +245,40 @@ setCart(JSON.parse(cart))
               <div className="flex justify-between border-b border-[#CA5834] border-dashed pb-[16px] md:pb-[20px] lg:pb-[24px] mb-[16px] md:mb-[20px] lg:mb-[24px]">
                 <div className="">
                   <h3 className="text-[18px] md:text-[24px] lg:text-[32px] text-black mb-[8px] font-bold">
-                  {selectedProduct.title}                  </h3>
-                  <p className="text-[14px] md:text-[16px]">(Soup) </p>
+                    {selectedProduct?.name}
+                  </h3>
+                  {selectedProduct?.categories?.map((category) => (<p className="text-[14px] md:text-[16px] text-[#29361C]">
+                    ({category.name})
+                  </p>))}
+                  {/* <p className="text-[14px] md:text-[16px]">(Soup) </p> */}
                 </div>
-                <h2 className="text-[18px] md:text-[20px] lg:text-[24px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
-                ₦{selectedProduct.price}
-                </h2>
+                <NumericFormat
+                  value={selectedProduct?.price}
+                  displayType={'text'}
+                  thousandSeparator={true}
+                  prefix={'₦'}
+                  decimalScale={0}
+                  fixedDecimalScale={true}
+                  renderText={value => <h2 className="text-[18px] md:text-[20px] lg:text-[24px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
+                    {value}
+                  </h2>}
+                />
+
+              </div>
+              <div className="mb-[20px]">
+                <h3 className="text-[16px] lg:text-[18px] font-medium">
+                  Description:
+                </h3>
+                <div className=" flex justify-between items-center  border-b border-[#CA5834] border-dashed pb-[16px] md:pb-[20px] lg:pb-[24px] mb-[16px] md:mb-[20px] lg:mb-[24px]">
+                  <p className="w-[70%] lg:[60%]">
+                    {selectedProduct?.description}
+                  </p>
+
+                </div>
+                <ProductList data={selectedProduct?.sellWithProducts} setCart={setCart} cart={cart} />
               </div>
 
-              <div className="mb-[20px]">
+              {/* <div className="mb-[20px]">
                 <h3 className="text-[16px] lg:text-[18px] font-medium">
                   Receipt:
                 </h3>
@@ -234,7 +287,7 @@ setCart(JSON.parse(cart))
                     Cocoyam,Dry Fish,Stock Fish,Cray Fish,Meat, Oziza Seed,Palm
                     Oil,Salt,Bitter Leaf,Ogiri
                   </p>
-                  
+
                 </div>
                 <div>
                   {" "}
@@ -243,74 +296,74 @@ setCart(JSON.parse(cart))
                   </h3>
                   <p className="mb-[16px] lg:mb-[20px] font-medium">Protein</p>
                   <div className="flex flex-col gap-2 mb-[28px]">
-                    <div className="flex justify-between items-center">
+                    <div className="flex items-center justify-between">
                       <div className="flex gap-2">
                         <input type="checkbox" /> <p>Cooked Titus</p>
                       </div>
                       <div>
                         <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                        ₦1,500.00
+                          ₦1,500.00
                         </h3>
                       </div>
                     </div>
-                    <div className="flex justify-between items-center">
+                    <div className="flex items-center justify-between">
                       <div className="flex gap-2">
                         <input type="checkbox" /> <p>Spicy grill chicken</p>
                       </div>
                       <div>
                         <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                        ₦1,500.00
+                          ₦1,500.00
                         </h3>
                       </div>
                     </div>
-                    <div className="flex justify-between items-center">
+                    <div className="flex items-center justify-between">
                       <div className="flex gap-2">
                         <input type="checkbox" /> <p>Peppered Snail</p>
                       </div>
                       <div>
                         <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                        ₦1,500.00
+                          ₦1,500.00
                         </h3>
                       </div>
                     </div>
-                    <div className="flex justify-between items-center">
+                    <div className="flex items-center justify-between">
                       <div className="flex gap-2">
                         <input type="checkbox" /> <p>Assorted Stew</p>
                       </div>
                       <div>
                         <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                        ₦1,500.00
+                          ₦1,500.00
                         </h3>
                       </div>
                     </div>
-                    <div className="flex justify-between items-center">
+                    <div className="flex items-center justify-between">
                       <div className="flex gap-2">
                         <input type="checkbox" /> <p>Goat Meat Stew</p>
                       </div>
                       <div>
                         <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                        ₦1,500.00
+                          ₦1,500.00
                         </h3>
                       </div>
                     </div>
-                    <div className="flex justify-between items-center">
+                    <div className="flex items-center justify-between">
                       <div className="flex gap-2">
                         <input type="checkbox" />{" "}
                         <p>Goat/Chicken/Assorted peppersoup</p>
                       </div>
                       <div>
                         <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                        ₦1,500.00
+                          ₦1,500.00
                         </h3>
                       </div>
                     </div>
-                    <div className="flex justify-between items-center">
+                    <div className="flex items-center justify-between">
                       <div className="flex gap-2">
                         <input type="checkbox" /> <p>Asun</p>
                       </div>
                       <div>
                         <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                        ₦1,500.00
+                          ₦1,500.00
                         </h3>
                       </div>
                     </div>
@@ -320,33 +373,33 @@ setCart(JSON.parse(cart))
                   {" "}
                   <p className="mb-[16px] lg:mb-[20px] font-medium">Swallow</p>
                   <div className="flex flex-col gap-2 mb-[28px]">
-                    <div className="flex justify-between items-center">
+                    <div className="flex items-center justify-between">
                       <div className="flex gap-2">
                         <input type="checkbox" /> <p>Starch</p>
                       </div>
                       <div>
                         <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                        ₦1,500.00
+                          ₦1,500.00
                         </h3>
                       </div>
                     </div>
-                    <div className="flex justify-between items-center">
+                    <div className="flex items-center justify-between">
                       <div className="flex gap-2">
                         <input type="checkbox" /> <p>Eba</p>
                       </div>
                       <div>
                         <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                        ₦1,500.00
+                          ₦1,500.00
                         </h3>
                       </div>
                     </div>
-                    <div className="flex justify-between items-center">
+                    <div className="flex items-center justify-between">
                       <div className="flex gap-2">
                         <input type="checkbox" /> <p>Fufu</p>
                       </div>
                       <div>
                         <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                        ₦1,500.00
+                          ₦1,500.00
                         </h3>
                       </div>
                     </div>
@@ -356,54 +409,54 @@ setCart(JSON.parse(cart))
                   {" "}
                   <p className="mb-[16px] lg:mb-[20px] font-medium">Drink</p>
                   <div className="flex flex-col gap-2">
-                    <div className="flex justify-between items-center">
+                    <div className="flex items-center justify-between">
                       <div className="flex gap-2">
                         <input type="checkbox" /> <p>Table water</p>
                       </div>
                       <div>
                         <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                        ₦1,500.00
+                          ₦1,500.00
                         </h3>
                       </div>
                     </div>
 
-                    <div className="flex justify-between items-center">
+                    <div className="flex items-center justify-between">
                       <div className="flex gap-2">
                         <input type="checkbox" /> <p>Cocacola</p>
                       </div>
                       <div>
                         <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                        ₦1,500.00
+                          ₦1,500.00
                         </h3>
                       </div>
                     </div>
 
-                    <div className="flex justify-between items-center">
+                    <div className="flex items-center justify-between">
                       <div className="flex gap-2">
                         <input type="checkbox" /> <p>Chivita Active</p>
                       </div>
                       <div>
                         <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                        ₦1,500.00
+                          ₦1,500.00
                         </h3>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div>
+              </div> */}
+              {/* <div>
                 <label>
                   <span className="font-semibold ">Comment</span>(optional)
                 </label>
-                <textarea className="border w-full rounded-lg" />
-              </div>
+                <textarea className="w-full border rounded-lg" />
+              </div> */}
               <div className="mt-[36px] md:mt-[48px] flex items-center justify-between  mb-[42px] md:mb-[56px] lg:mb-[72px] ">
                 <div>
-                  <h3 className="text-[16px] lg:text-[18px] font-medium">
+                  {/* <h3 className="text-[16px] lg:text-[18px] font-medium">
                     Total Order: ₦{totalPrice}
-                  </h3>
+                  </h3> */}
                 </div>
-                <div className="flex items-center gap-2 flex-col-reverse  md:flex-row">
+                <div className="flex flex-col-reverse items-center gap-2 md:flex-row">
                   <div
                     onClick={HandleCart}
                     className="py-[8px] px-[10px] md:py-[12px] md:px-[18px] rounded-[24px] flex-shrink-0 bg-[#CA5834] text-white cursor-pointer"
@@ -413,7 +466,7 @@ setCart(JSON.parse(cart))
                   {/* <button className="md:py-[2px] px-[16px]  md:px-[24px] lg:px-[30px] border border-[#CA5834] rounded-[24px] flex items-center">
                     <p
                       onClick={decrease}
-                      className="py-2 px-3 cursor-pointer hover:scale-150"
+                      className="px-3 py-2 cursor-pointer hover:scale-150"
                     >
                       -
                     </p>
@@ -422,7 +475,7 @@ setCart(JSON.parse(cart))
                     </p>
                     <p
                       onClick={increase}
-                      className="py-2 px-3 cursor-pointer hover:scale-150"
+                      className="px-3 py-2 cursor-pointer hover:scale-150"
                     >
                       +
                     </p>
