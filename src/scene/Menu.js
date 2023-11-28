@@ -226,7 +226,7 @@ const Menu = ({ }) => {
               />
             </svg>
           </div>{" "}
-          <div className="px-5 h-[80vh] overflow-y-auto">
+          <div className="px-5 h-[80vh] ">
             <img
               src={(selectedProduct.images && typeof selectedProduct.images === 'object') && selectedProduct?.images[Object.keys(selectedProduct?.images)[0]]?.original_url}
               alt="egusi"
@@ -250,7 +250,7 @@ const Menu = ({ }) => {
                   prefix={'₦'}
                   decimalScale={0}
                   fixedDecimalScale={true}
-                  renderText={value => <h2 className="text-[18px] md:text-[20px] lg:text-[24px] text-[#CA5834] font-bold hover:text-white hover:bg-[#CA5834]">
+                  renderText={value => <h2 className="text-[18px] md:text-[20px] lg:text-[24px] text-[#CA5834] font-bold ">
                     {value}
                   </h2>}
                 />
