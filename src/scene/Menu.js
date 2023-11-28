@@ -226,7 +226,7 @@ const Menu = ({ }) => {
               />
             </svg>
           </div>{" "}
-          <div className="px-5 h-[80vh] ">
+          <div className="px-5 h-[80vh] overflow-y-auto">
             <img
               src={(selectedProduct.images && typeof selectedProduct.images === 'object') && selectedProduct?.images[Object.keys(selectedProduct?.images)[0]]?.original_url}
               alt="egusi"
