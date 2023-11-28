@@ -1,5 +1,4 @@
 import {
-
   ALLIMAGES,
   CATEGORIES,
   CHECKORDER,

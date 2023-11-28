@@ -77,7 +77,6 @@ const Topbar = ({ cart, setCart }) => {
   }
 
   const removeProduct = async (product) => {
-    console.log("hello");
     try {
       let cartData = localStorage.getItem("cart");
       if (cartData !== null) {
@@ -443,9 +442,9 @@ const Topbar = ({ cart, setCart }) => {
         />{" "}
       </div> */}
 
-      {/* Create filter Modal */}
+      {/* Customer details modal */}
       <Modal isOpen={isDetailsModalOpen} onClose={HandleDetailsClose}>
-        <div className="inline-block overflow-hidden text-left relative align-bottom transition-all transform bg-[white] rounded-2xl shadow-xl sm:my-8 sm:align-middle min-w-[380px] sm:max-w-[420px] sm:w-[420px] md:max-w-[713px] md:w-full ">
+      <div className="inline-block overflow-hidden text-left relative align-bottom transition-all transform bg-[white] rounded-2xl shadow-xl sm:my-8 sm:align-middle w-full sm:max-w-[550px] sm:w-full">
           <div className="py-4 flex justify-end px-5 ">
             <svg
               onClick={HandleDetailsClose}
@@ -717,6 +716,8 @@ const Topbar = ({ cart, setCart }) => {
           )}
         </div>
       </Modal>
+
+      {/* checkout MODAL */}
       <ModalLeft isOpen={isOpen} onClose={HandleModalClose}>
         <div className="p-[24px] h-full">
           <div className="flex pb-2 border-b mb-3">
@@ -887,7 +888,7 @@ const Topbar = ({ cart, setCart }) => {
       </ModalLeft>
 
       <Modal isOpen={isPaymentOptionOpen} onClose={HandleOptionClose}>
-        <div className="inline-block overflow-hidden text-left relative align-bottom transition-all transform bg-[white] rounded-2xl shadow-xl sm:my-8 sm:align-middle min-w-[280px] sm:max-w-[360px] sm: md:max-w-[713px] md:w-full">
+      <div className="inline-block overflow-hidden text-left relative align-bottom transition-all transform bg-[white] rounded-2xl shadow-xl sm:my-8 sm:align-middle w-full sm:max-w-[550px] sm:w-full">
           <div className="py-4 flex justify-end px-5 ">
             <svg
               className="cursor-pointer"
@@ -985,8 +986,10 @@ const Topbar = ({ cart, setCart }) => {
           </form>
         </div>
       </Modal>
+
+      {/* vant payment gateway */}
       <Modal isOpen={completePaymentOpen} onClose={HandleCompletePaymentClose}>
-        <div className="inline-block overflow-hidden text-left relative align-bottom transition-all transform bg-[white] rounded-2xl shadow-xl sm:my-8 sm:align-middle min-w-[280px] sm:max-w-[360px] sm: md:max-w-[713px] md:w-full">
+      <div className="inline-block overflow-hidden text-left relative align-bottom transition-all transform bg-[white] rounded-2xl shadow-xl sm:my-8 sm:align-middle w-full sm:max-w-[550px] sm:w-full">
           <div className="py-4 flex justify-end px-5 ">
             <svg
               className="cursor-pointer"

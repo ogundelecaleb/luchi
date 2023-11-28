@@ -75,16 +75,7 @@ const Menu = ({ }) => {
     // addItemToBasket()
   };
 
-  // const increase = () => {
-  //   const newTotal = totalPrice + product.price;
-  //   setTotalPrice(newTotal);
-  // };
-  // const decrease = () => {
-  //   if (totalPrice && totalPrice > 0) {
-  //     const newTotal = totalPrice - product.price;
-  //     setTotalPrice(newTotal);
-  //   }
-  // };
+
   const [isOpen, setIsOpen] = useState(false);
 
   const HandleModalOpen = (p) => {
@@ -154,10 +145,10 @@ const Menu = ({ }) => {
                 <img
                   src={prod?.images[Object.keys(prod.images)[0]]?.original_url}
                   alt="product"
-                  className="rounded-tl-lg rounded-tr-lg"
+                  className="rounded-tl-lg rounded-tr-lg h-[124px]"
                 />
                 <div className="p-[16px] md:p-[16px] lg:p-[16px] bg-[#FFF] rounded-br-lg rounded-bl-lg">
-                  <div className="mb-[24px] md:mb-[40px] lg:mb-[48px]">
+                  <div className="pb-[24px] pd:mb-[40px] lg:pb-[48px]">
                     <h3 className="text-[18px] md:text-[20px] lg:text-[24px] text-black mb-[8px] font-bold">
                       {prod.name}
                     </h3>
@@ -199,9 +190,9 @@ const Menu = ({ }) => {
           </div>)}
         </div>
       </div>
-      {/* More Details on Merchant Channel */}
+      {/* More details on dish */}
       <Modal isOpen={isOpen} onClose={HandleModalClose}>
-        <div className="inline-block overflow-hidden text-left relative align-bottom transition-all transform bg-[white] rounded-2xl shadow-xl sm:my-8 sm:align-middle w-full sm:max-w-[713px] sm:w-full">
+        <div className="inline-block overflow-hidden text-left relative align-bottom transition-all transform bg-[white] rounded-2xl shadow-xl sm:my-8 sm:align-middle w-full sm:max-w-[550px] sm:w-full">
           <div className="py-4 flex justify-end px-5 border-b border-b-[#edf2f7]">
             <svg
               className="cursor-pointer"
@@ -242,7 +233,7 @@ const Menu = ({ }) => {
               className="w-full h-[217px] rounded-lg mb-[24px]"
             />
             <div className="">
-              <div className="flex justify-between border-b border-[#CA5834] border-dashed pb-[16px] md:pb-[20px] lg:pb-[24px] mb-[16px] md:mb-[20px] lg:mb-[24px]">
+              <div className="flex justify-between border-b border-[#CA5834] border-dashed pb-[16px] md:pb-[20px] lg:pb-[24px] ">
                 <div className="">
                   <h3 className="text-[18px] md:text-[24px] lg:text-[32px] text-black mb-[8px] font-bold">
                     {selectedProduct?.name}
@@ -277,179 +268,7 @@ const Menu = ({ }) => {
                 </div>
                 <ProductList data={selectedProduct?.sellWithProducts} setCart={setCart} cart={cart} />
               </div>
-
-              {/* <div className="mb-[20px]">
-                <h3 className="text-[16px] lg:text-[18px] font-medium">
-                  Receipt:
-                </h3>
-                <div className=" flex justify-between items-center  border-b border-[#CA5834] border-dashed pb-[16px] md:pb-[20px] lg:pb-[24px] mb-[16px] md:mb-[20px] lg:mb-[24px]">
-                  <p className="w-[70%] lg:[60%]">
-                    Cocoyam,Dry Fish,Stock Fish,Cray Fish,Meat, Oziza Seed,Palm
-                    Oil,Salt,Bitter Leaf,Ogiri
-                  </p>
-
-                </div>
-                <div>
-                  {" "}
-                  <h3 className="text-[16px] lg:text-[18px] font-medium">
-                    How do you want it?
-                  </h3>
-                  <p className="mb-[16px] lg:mb-[20px] font-medium">Protein</p>
-                  <div className="flex flex-col gap-2 mb-[28px]">
-                    <div className="flex items-center justify-between">
-                      <div className="flex gap-2">
-                        <input type="checkbox" /> <p>Cooked Titus</p>
-                      </div>
-                      <div>
-                        <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                          ₦1,500.00
-                        </h3>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex gap-2">
-                        <input type="checkbox" /> <p>Spicy grill chicken</p>
-                      </div>
-                      <div>
-                        <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                          ₦1,500.00
-                        </h3>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex gap-2">
-                        <input type="checkbox" /> <p>Peppered Snail</p>
-                      </div>
-                      <div>
-                        <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                          ₦1,500.00
-                        </h3>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex gap-2">
-                        <input type="checkbox" /> <p>Assorted Stew</p>
-                      </div>
-                      <div>
-                        <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                          ₦1,500.00
-                        </h3>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex gap-2">
-                        <input type="checkbox" /> <p>Goat Meat Stew</p>
-                      </div>
-                      <div>
-                        <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                          ₦1,500.00
-                        </h3>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex gap-2">
-                        <input type="checkbox" />{" "}
-                        <p>Goat/Chicken/Assorted peppersoup</p>
-                      </div>
-                      <div>
-                        <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                          ₦1,500.00
-                        </h3>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex gap-2">
-                        <input type="checkbox" /> <p>Asun</p>
-                      </div>
-                      <div>
-                        <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                          ₦1,500.00
-                        </h3>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  {" "}
-                  <p className="mb-[16px] lg:mb-[20px] font-medium">Swallow</p>
-                  <div className="flex flex-col gap-2 mb-[28px]">
-                    <div className="flex items-center justify-between">
-                      <div className="flex gap-2">
-                        <input type="checkbox" /> <p>Starch</p>
-                      </div>
-                      <div>
-                        <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                          ₦1,500.00
-                        </h3>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex gap-2">
-                        <input type="checkbox" /> <p>Eba</p>
-                      </div>
-                      <div>
-                        <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                          ₦1,500.00
-                        </h3>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex gap-2">
-                        <input type="checkbox" /> <p>Fufu</p>
-                      </div>
-                      <div>
-                        <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                          ₦1,500.00
-                        </h3>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  {" "}
-                  <p className="mb-[16px] lg:mb-[20px] font-medium">Drink</p>
-                  <div className="flex flex-col gap-2">
-                    <div className="flex items-center justify-between">
-                      <div className="flex gap-2">
-                        <input type="checkbox" /> <p>Table water</p>
-                      </div>
-                      <div>
-                        <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                          ₦1,500.00
-                        </h3>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center justify-between">
-                      <div className="flex gap-2">
-                        <input type="checkbox" /> <p>Cocacola</p>
-                      </div>
-                      <div>
-                        <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                          ₦1,500.00
-                        </h3>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center justify-between">
-                      <div className="flex gap-2">
-                        <input type="checkbox" /> <p>Chivita Active</p>
-                      </div>
-                      <div>
-                        <h3 className="text-[14px] md:text-[16px] lg:text-[18px] text-[#CA5834] font-bold">
-                          ₦1,500.00
-                        </h3>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
-              {/* <div>
-                <label>
-                  <span className="font-semibold ">Comment</span>(optional)
-                </label>
-                <textarea className="w-full border rounded-lg" />
-              </div> */}
+              
               <div className="mt-[36px] md:mt-[48px] flex items-center justify-between  mb-[42px] md:mb-[56px] lg:mb-[72px] ">
                 <div>
                   {/* <h3 className="text-[16px] lg:text-[18px] font-medium">
@@ -463,23 +282,7 @@ const Menu = ({ }) => {
                   >
                     Add to cart
                   </div>
-                  {/* <button className="md:py-[2px] px-[16px]  md:px-[24px] lg:px-[30px] border border-[#CA5834] rounded-[24px] flex items-center">
-                    <p
-                      onClick={decrease}
-                      className="px-3 py-2 cursor-pointer hover:scale-150"
-                    >
-                      -
-                    </p>
-                    <p className="py-2 px-3 cursor-pointer text-[16] md:text-[18px] font-bold">
-                      1
-                    </p>
-                    <p
-                      onClick={increase}
-                      className="px-3 py-2 cursor-pointer hover:scale-150"
-                    >
-                      +
-                    </p>
-                  </button> */}
+                  
                 </div>
               </div>
             </div>
