@@ -70,7 +70,7 @@ function addToCart(product) {
     localStorage.setItem("cart", JSON.stringify(cartArray));
     localStorage.setItem("total", JSON.stringify(total));
     //  localStorage.multiSet([['cart', JSON.stringify(cartArray)], ['total', JSON.stringify(total)]]);
-    enqueueSnackbar('Item Added Successfully to cart 😃', { variant: 'success' });
+    enqueueSnackbar('Item Added Successfully to cart 🥘', { variant: 'success' });
     let itemArray = localStorage.getItem("cart");
     console.log(itemArray);
   } catch (error) {

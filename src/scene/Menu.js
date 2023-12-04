@@ -53,7 +53,7 @@ const Menu = ({ }) => {
 
   async function getCategories() {
     const response = await api.getCategories();
-    // console.log('categories==>>', response.data);
+    console.log('categories==>>', response.data);
     return response.data;
   }
 
@@ -112,7 +112,7 @@ const Menu = ({ }) => {
         </div>
         <div className="mb-[24px] md:mb-[32px]">
           {categoriesQuery.isLoading ? (
-            <h1>loading</h1>
+            <h1 className="text-[#CA5834]">loading...</h1>
           ) : (<ul className="flex overflow-x-auto gap-[8px] md:gap-[12px] pb-3">
             <li
               onClick={() => setCategory('')}
@@ -138,12 +138,13 @@ const Menu = ({ }) => {
         <div className="">
 
           {productsQuery.isLoading ? (
-            <h1>loading</h1>
+            <h1 className="text-[#CA5834]">loading</h1>
           ) : (<div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-[20px] mb-[50px] ">
             {productsQuery?.data?.data?.map((prod) => (
               <div key={prod.id} className="flex flex-col w-full sm:max-w-[320px] md:max-w-[258px] rounded-lg">
                 <img
                   src={prod?.images[Object.keys(prod.images)[0]]?.original_url}
+                  // src="/jollof.png"
                   alt="product"
                   className="rounded-tl-lg rounded-tr-lg h-[124px]"
                 />

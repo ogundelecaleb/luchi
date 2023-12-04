@@ -52,7 +52,7 @@ const Home = () => {
       <div className="app bg-[#ffffff] flex ">
         <Sidebar isSidebarOpen={isSidebar} onClose={handleSideBarClose} />
 
-        <main className="bg-[#FDFBE4] w-full overflow-x-hidden relative">
+        <main className="bg-[#FDFBE4] min-h-screen w-full overflow-x-hidden relative">
           <Topbar setIsSidebar={toggleSidebar} cart={cart} setCart={setCart} />
           <Outlet context={[cart, setCart]} />
         </main>

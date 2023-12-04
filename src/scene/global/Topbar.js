@@ -129,17 +129,11 @@ const Topbar = ({ cart, setCart }) => {
         }
         const oldTotal = localStorage.getItem("total");
         const newTotal = +oldTotal + +cartArray[productIndex].price;
-        // console.log(newTotal);
-        // return;
-        // Save the updated cart to  localStorage
-        //    localStorage.setItem('cart', JSON.stringify(cartArray));
+        
         localStorage.setItem("cart", JSON.stringify(cartArray));
         localStorage.setItem("total", JSON.stringify(newTotal));
         enqueueSnackbar("Cart Updated 😃", { variant: 'success' });
         fetchCart();
-
-        // let itemArray = localStorage.getItem(["cart", "total"]);
-        // console.log(itemArray);
       }
     } catch (error) {
       console.log(error);
@@ -1090,7 +1084,7 @@ const Topbar = ({ cart, setCart }) => {
               <p className="text-center text-[12px] mb-2">
                 Expires in
               </p><CountdownTimer targetTime={paymentDetails?.valid_till} orderId={paymentDetails?.order_id} HandleSuccessOpen={HandleSuccessOpen} HandleCompletePaymentClose={HandleCompletePaymentClose} fetchCart={fetchCart} />
-              <Link onClick={HandleCompletePaymentClose} to="/track">
+              <Link onClick={() => {HandleCompletePaymentClose;HandleSuccessOpen}} >
                 <div className="w-full flex justify-center">
                   <button className="bg-[#CA5834] text-white rounded-[40px] w-[70%] text-center mx-auto py-[10px] mb-[32px]">
                     I have sent the money
